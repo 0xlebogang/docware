@@ -6,6 +6,4 @@ readme = "README.md"
 dependencies = []
 
 [tool.uv.workspace]
-members = [
-    "agents",
-]
+members = ["agents"]

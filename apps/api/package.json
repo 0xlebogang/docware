@@ -1,0 +1,22 @@
+{
+	"name": "api",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"build": "tsc",
+		"start": "node dist/index.js"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.19.6",
+		"hono": "^4.10.7"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@types/node": "catalog:",
+		"tsx": "^4.21.0",
+		"typescript": "catalog:"
+	}
+}
