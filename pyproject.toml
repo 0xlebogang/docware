@@ -1,0 +1,11 @@
+[project]
+name = "docware"
+version = "0.0.0"          # See correct version in ./package.json
+requires-python = ">=3.12"
+readme = "README.md"
+dependencies = []
+
+[tool.uv.workspace]
+members = [
+    "agents",
+]

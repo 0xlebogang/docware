@@ -1,0 +1,7 @@
+[project]
+name = "agents"
+version = "0.0.0" # view correct version in ./package.json
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk>=1.19.0",
+]

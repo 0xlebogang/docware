@@ -1,5 +1,5 @@
 [env]
-ENVIRONMENT = 'production'
+DEBUG = false
 
 [tools]
 node = '22.19'
