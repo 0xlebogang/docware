@@ -34,7 +34,6 @@ out/
 
 # Vercel
 .vercel/
-
 # Go language specific ignores
 #
 # Test binary, built with `go test -c`
@@ -54,6 +53,6 @@ go.work
 go.work.sum
 
 # Editor/IDE
-# .idea/
+.idea/
 .vscode/*
 !.vscode/extensions.json
