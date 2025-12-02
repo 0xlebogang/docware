@@ -8,7 +8,6 @@ node_modules/
 # TypeScript cache
 *.tsbuildinfo
 
-
 # dotenv environment variable files
 .env
 .env.*
@@ -20,10 +19,10 @@ node_modules/
 # Next.js build output
 .next/
 next-env.d.ts
+dist/
 
 # Docusaurus cache and generated files
 .docusaurus
-
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test

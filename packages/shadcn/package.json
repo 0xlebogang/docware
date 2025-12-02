@@ -1,5 +1,5 @@
 {
-	"name": "@repo/ui",
+	"name": "@repo/shadcn",
 	"private": true,
 	"exports": {
 		"./globals.css": "./src/styles/globals.css",

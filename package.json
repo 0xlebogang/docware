@@ -10,9 +10,10 @@
 		"lint:fix": "turbo lint:fix"
 	},
 	"devDependencies": {
-		"@repo/biome": "workspace:*",
 		"@biomejs/biome": "2.3.8",
-		"turbo": "^2.6.1"
+		"@repo/biome": "workspace:*",
+		"turbo": "^2.6.1",
+		"vitest": "catalog:"
 	},
 	"packageManager": "pnpm@10.15.1"
 }

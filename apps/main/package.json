@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-		"@repo/ui": "workspace:*",
+    "@repo/shadcn": "workspace:*",
     "lucide-react": "catalog:",
     "next": "catalog:",
     "next-themes": "catalog:",
@@ -19,12 +19,14 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
-		"@repo/biome": "workspace:*",
-		"@repo/tsconfig": "workspace:*",
+    "@repo/biome": "workspace:*",
+    "@repo/tsconfig": "workspace:*",
     "@tailwindcss/postcss": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "typescript": "catalog:"
+    "@vitest/coverage-v8": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }
