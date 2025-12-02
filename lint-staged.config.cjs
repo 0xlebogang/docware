@@ -1,3 +1,3 @@
 module.exports = {
-	"*": "biome check --fix",
+	"*.{js,cjs,mjs,ts,mts,tsx,json,jsonc,css}": "biome check --fix",
 };

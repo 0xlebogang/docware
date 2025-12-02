@@ -1,8 +1,6 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
-	"extends": [
-		"./react.json"
-	],
+	"extends": ["./react.json"],
 	"root": false,
 	"linter": {
 		"domains": {

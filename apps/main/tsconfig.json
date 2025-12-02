@@ -1,18 +1,18 @@
 {
-  "extends": ["@repo/tsconfig/next", "@repo/tsconfig/react"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"],
-      "@repo/shadcn/*": ["../../packages/ui/src/*"]
-    },
-  },
-  "include": [
-    "next-env.d.ts",
-    "next.config.mjs",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+	"extends": ["@repo/tsconfig/next", "@repo/tsconfig/react"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./*"],
+			"@repo/shadcn/*": ["../../packages/ui/src/*"]
+		}
+	},
+	"include": [
+		"next-env.d.ts",
+		"next.config.mjs",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts"
+	],
+	"exclude": ["node_modules"]
 }
