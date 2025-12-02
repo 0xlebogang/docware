@@ -1,5 +1,5 @@
 {
-  "extends": "@repo/tsconfig/next",
+  "extends": ["@repo/tsconfig/next", "@repo/tsconfig/react"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

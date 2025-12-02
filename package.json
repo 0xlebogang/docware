@@ -6,12 +6,15 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"test": "turbo test",
+		"test:all": "vitest run",
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint:fix"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.8",
 		"@repo/biome": "workspace:*",
+		"@vitest/coverage-v8": "catalog:",
+		"serve": "^14.2.5",
 		"turbo": "^2.6.1",
 		"vitest": "catalog:"
 	},
