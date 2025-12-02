@@ -4,7 +4,8 @@ ENVIRONMENT = 'production'
 [tools]
 node = '22.19'
 pnpm = '10.15'
-go = '1.24'
+go = '1.24.10'
+golangci-lint = '2.6.2'
 
 [settings]
 activate_aggressive = true
