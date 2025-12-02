@@ -11,8 +11,20 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+		"@repo/ui": "workspace:*",
     "lucide-react": "catalog:",
+    "next": "catalog:",
+    "next-themes": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
+  },
+  "devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+    "@tailwindcss/postcss": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "typescript": "catalog:"
   }
 }

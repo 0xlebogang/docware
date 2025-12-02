@@ -7,16 +7,16 @@ settings:
 catalogs:
   default:
     '@tailwindcss/postcss':
-      specifier: ^4.1.17
+      specifier: 4.1.17
       version: 4.1.17
     '@types/node':
-      specifier: ^24.10.1
+      specifier: 24.10.1
       version: 24.10.1
     '@types/react':
-      specifier: ^19.2.7
+      specifier: 19.2.7
       version: 19.2.7
     '@types/react-dom':
-      specifier: ^19.2.3
+      specifier: 19.2.3
       version: 19.2.3
     clsx:
       specifier: ^2.1.1
@@ -37,7 +37,7 @@ catalogs:
       specifier: ^19.2.0
       version: 19.2.0
     typescript:
-      specifier: ^5.9.3
+      specifier: 5.9.3
       version: 5.9.3
 
 importers:
@@ -56,6 +56,9 @@ importers:
 
   apps/main:
     dependencies:
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       lucide-react:
         specifier: 'catalog:'
         version: 0.555.0(react@19.2.0)
@@ -71,6 +74,28 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@repo/biome':
+        specifier: workspace:*
+        version: link:../../tools/biome
+      '@repo/tsconfig':
+        specifier: workspace:*
+        version: link:../../tools/typescript
+      '@tailwindcss/postcss':
+        specifier: 'catalog:'
+        version: 4.1.17
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.10.1
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.7)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
 
   packages/ui:
     dependencies:
