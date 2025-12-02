@@ -91,3 +91,6 @@ cover/
 
 # Ruff stuff:
 .ruff_cache/
+
+# Docker
+.docker/
