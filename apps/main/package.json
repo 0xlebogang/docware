@@ -1,36 +1,36 @@
 {
-  "name": "main",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "test": "vitest run",
-    "start": "next start",
-    "lint": "biome check",
-    "lint:fix": "biome check --fix --unsafe",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@repo/shadcn": "workspace:*",
-    "lucide-react": "catalog:",
-    "next": "catalog:",
-    "next-themes": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:"
-  },
-  "devDependencies": {
-    "@repo/biome": "workspace:*",
-    "@repo/tsconfig": "workspace:*",
-    "@repo/vitest-config": "workspace:*",
-    "@tailwindcss/postcss": "catalog:",
-    "@testing-library/jest-dom": "catalog:",
-    "@testing-library/react": "catalog:",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vitest/coverage-v8": "catalog:",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
-  }
+	"name": "main",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"test": "vitest run",
+		"start": "next start",
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@repo/shadcn": "workspace:*",
+		"lucide-react": "catalog:",
+		"next": "catalog:",
+		"next-themes": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@tailwindcss/postcss": "catalog:",
+		"@testing-library/jest-dom": "catalog:",
+		"@testing-library/react": "catalog:",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitest/coverage-v8": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
 }

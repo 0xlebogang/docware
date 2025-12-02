@@ -1,0 +1,13 @@
+{
+	"name": "@repo/agents",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "uv run adk web",
+		"dev:cli": "uv run adk",
+		"test": "echo 'No tests implemented yet'",
+		"lint": "ruff check",
+		"lint:fix": "ruff check --fix --unsafe-fixes",
+		"install": "uv sync"
+	}
+}

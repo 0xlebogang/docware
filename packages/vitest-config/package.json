@@ -1,27 +1,27 @@
 {
-  "name": "@repo/vitest-config",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js",
-    "./base": "./dist/configs/base-config.js",
-    "./ui": "./dist/configs/ui-config.js"
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "lint": "biome check",
-    "lint:fix": "biome check --fix --unsafe",
+	"name": "@repo/vitest-config",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": "./dist/index.js",
+		"./base": "./dist/configs/base-config.js",
+		"./ui": "./dist/configs/ui-config.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe",
 		"prepare": "pnpm build"
-  },
-  "dependencies": {
-    "vitest": "catalog:"
-  },
-  "devDependencies": {
+	},
+	"dependencies": {
+		"vitest": "catalog:"
+	},
+	"devDependencies": {
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
-    "jsdom": "^27.2.0",
-    "typescript": "catalog:"
-  }
+		"jsdom": "^27.2.0",
+		"typescript": "catalog:"
+	}
 }
