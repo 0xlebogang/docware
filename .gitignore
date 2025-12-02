@@ -1,0 +1,59 @@
+# Coverage directory used by tools like istanbul
+coverage*
+*.lcov
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache/
+
+# Next.js build output
+.next/
+next-env.d.ts
+
+# Docusaurus cache and generated files
+.docusaurus
+
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Turborepo
+.turbo/
+out/
+
+# Vercel
+.vercel/
+
+# Go language specific ignores
+#
+# Test binary, built with `go test -c`
+*.test
+
+# Code coverage profiles and other test artifacts
+*.out
+coverage.*
+*.coverprofile
+profile.cov
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Editor/IDE
+# .idea/
+.vscode/*
+!.vscode/extensions.json

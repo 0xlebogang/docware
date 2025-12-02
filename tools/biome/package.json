@@ -1,0 +1,9 @@
+{
+	"name": "@repo/biome",
+	"private": true,
+	"exports": {
+		".": "./base.json",
+		"./react": "./react.json",
+		"./next": "./next.json"
+	}
+}

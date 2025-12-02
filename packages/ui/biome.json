@@ -1,0 +1,18 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+	"extends": [
+		"@repo/biome/react"
+	],
+	"root": false,
+	"linter": {
+		"enabled": false
+	},
+	"formatter": {
+		"enabled": true
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	}
+}
