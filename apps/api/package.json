@@ -15,8 +15,11 @@
 	"devDependencies": {
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
 		"@types/node": "catalog:",
+		"@vitest/coverage-v8": "catalog:",
 		"tsx": "^4.21.0",
-		"typescript": "catalog:"
+		"typescript": "catalog:",
+		"vitest": "catalog:"
 	}
 }
