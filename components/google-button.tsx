@@ -1,9 +1,16 @@
-import React from "react";
+"use client";
+
+import { signIn } from "@/lib/auth-client";
 import { Button } from "./ui/button";
 
 export default function GoogleButton() {
   return (
-    <Button type="button" variant="outline" className="w-full">
+    <Button
+      onClick={handleGoogleSignIn}
+      type="button"
+      variant="outline"
+      className="w-full"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="0.98em"
@@ -31,4 +38,10 @@ export default function GoogleButton() {
       <span>Google</span>
     </Button>
   );
+}
+
+export async function handleGoogleSignIn() {
+  await signIn.social({
+    provider: "google",
+  });
 }
