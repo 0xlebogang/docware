@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@repo/shadcn/components/button";
+import { Button } from "@repo/ui/components/button";
 import { Menu, X } from "lucide-react";
 import React from "react";
 import { Link } from "./link";

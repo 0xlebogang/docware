@@ -7,8 +7,9 @@
 		"baseUrl": ".",
 		"paths": {
 			"@repo/components/*": ["./src/*"],
-			"@repo/shadcn/*": ["../shadcn/src/*"]
+			"@repo/ui/*": ["../ui/src/*"]
 		}
 	},
+	"include": ["src/**/*.tsx", "../ui/src/*"],
 	"exclude": ["node_modules"]
 }

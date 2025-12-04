@@ -1,4 +1,4 @@
-import { cn } from "@repo/shadcn/lib/utils";
+import { cn } from "@repo/ui/lib/utils";
 import { Book } from "lucide-react";
 
 export const Logo = ({

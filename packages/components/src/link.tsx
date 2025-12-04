@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { cn } from "@repo/shadcn/lib/utils";
+import { cn } from "@repo/ui/lib/utils";
 import * as React from "react";
 
 // extend react anchor attributes
