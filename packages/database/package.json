@@ -1,0 +1,31 @@
+{
+	"name": "@repo/database",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "echo 'Add dev script here'",
+		"build": "echo 'Add build script here'",
+		"test": "vitest run",
+		"db:push": "prisma db push",
+		"db:generate": "prisma generate",
+		"db:migrate": "prisma migrate dev",
+		"db:deploy": "prisma migrate deploy",
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@types/pg": "^8.15.6",
+		"prisma": "^7.1.0"
+	},
+	"dependencies": {
+		"@prisma/adapter-pg": "^7.1.0",
+		"@prisma/client": "^7.1.0",
+		"dotenv": "^17.2.3",
+		"pg": "^8.16.3"
+	}
+}

@@ -1,0 +1,16 @@
+# This compose file defines all the external services required to run
+# the application in development
+
+services:
+  postgresdb:
+    image: docker.io/library/postgres:17-alpine
+    container_name: postgresdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/postgres:/var/lib/postgresql/data:rw,Z

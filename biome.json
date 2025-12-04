@@ -1,5 +1,15 @@
 {
 	"extends": ["@repo/biome"],
+	"files": {
+		"includes": [
+			"**",
+			"!node_modules",
+			"!.docker",
+			"!.husky",
+			"!.turbo",
+			"!coverage"
+		]
+	},
 	"linter": {
 		"domains": {
 			"project": "recommended"
