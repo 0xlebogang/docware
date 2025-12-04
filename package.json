@@ -13,6 +13,8 @@
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint:fix",
 		"format": "biome format --write",
+		"services:up": "docker-compose -f docker-compose.dev.yml up -d",
+		"services:down": "docker-compose -f docker-compose.dev.yml down",
 		"typecheck": "turbo typecheck",
 		"prepare": "husky"
 	},
