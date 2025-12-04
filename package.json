@@ -1,0 +1,26 @@
+{
+	"name": "docware",
+	"version": "0.0.0",
+	"private": true,
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"test": "turbo test",
+		"lint": "turbo lint",
+		"lint:fix": "turbo lint:fix",
+		"typecheck": "turbo typecheck",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.8",
+		"@changesets/cli": "^2.29.8",
+		"@repo/biome": "workspace:*",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"turbo": "^2.6.2"
+	},
+	"packageManager": "pnpm@10.15.1"
+}

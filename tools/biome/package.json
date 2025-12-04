@@ -1,0 +1,13 @@
+{
+	"name": "@repo/biome",
+	"private": true,
+	"exports": {
+		".": "./base.json",
+		"./react": "./react.json",
+		"./next": "./next.json"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe"
+	}
+}

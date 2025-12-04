@@ -1,0 +1,15 @@
+packages:
+  - apps/*
+  - tools/*
+  - packages/*
+
+catalog:
+  '@tailwindcss/postcss': 4.1.17
+  '@types/node': 24.10.1
+  '@types/react': 19.2.7
+  '@types/react-dom': 19.2.3
+  clsx: ^2.1.1
+  lucide-react: 0.555.0
+  react: 19.2.1
+  react-dom: 19.2.1
+  typescript: 5.9.3
