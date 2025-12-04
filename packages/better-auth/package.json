@@ -2,6 +2,9 @@
 	"name": "@repo/better-auth",
 	"version": "0.0.0",
 	"private": true,
+	"exports": {
+		"./*": "./src/*"
+	},
 	"scripts": {
 		"test": "vitest run",
 		"lint": "biome check",
