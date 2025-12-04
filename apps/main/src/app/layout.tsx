@@ -2,6 +2,7 @@ import { Navbar } from "@repo/components/navbar";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "@repo/ui/globals.css";
+import Footer from "@repo/components/footer";
 
 const fontSans = Geist({
 	subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
 				<Providers>
 					<Navbar />
 					{children}
+					<Footer />
 				</Providers>
 			</body>
 		</html>

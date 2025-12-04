@@ -5,8 +5,8 @@ import {
 	TicketCheckIcon,
 	Twitter,
 } from "lucide-react";
-import { Logo } from "@/components/logo";
 import { Link } from "./link";
+import { Logo } from "./logo";
 
 const links = [
 	{
@@ -35,10 +35,10 @@ const links = [
 	},
 ];
 
-export default function FooterSection() {
+export default function Footer() {
 	return (
-		<footer className="py-16 md:py-32">
-			<div className="mx-auto max-w-5xl px-6">
+		<footer className="py-8 md:py-16">
+			<div className="mx-auto max-w-7xl px-6 border-t border-muted-foreground/20 py-8 md:py-16">
 				<Link href="/" aria-label="go home" className="mx-auto block size-fit">
 					<Logo />
 				</Link>

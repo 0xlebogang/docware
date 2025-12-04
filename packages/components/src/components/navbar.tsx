@@ -26,10 +26,10 @@ export function Navbar({
 	const [menuState, setMenuState] = React.useState(false);
 
 	return (
-		<header>
+		<header className="fixed top-0 left-0 w-full z-20">
 			<nav
 				data-state={menuState && "active"}
-				className="fixed z-20 w-full border-b border-dashed bg-white backdrop-blur md:relative dark:bg-zinc-950/50 lg:dark:bg-transparent"
+				className="fixed z-20 w-full border-b border-dashed bg-background backdrop-blur md:relative dark:bg-background/50"
 			>
 				<div className="m-auto max-w-5xl px-6">
 					<div className="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
