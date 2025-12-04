@@ -24,6 +24,7 @@
 		"@repo/biome": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
 		"@vitest/coverage-v8": "catalog:",
+		"dotenv-cli": "^11.0.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.7",
 		"turbo": "^2.6.2",
