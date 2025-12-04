@@ -1,0 +1,14 @@
+{
+	"extends": "@repo/tsconfig/react",
+	"compilerOptions": {
+		"declaration": true,
+		"module": "preserve",
+		"moduleResolution": "bundler",
+		"baseUrl": ".",
+		"paths": {
+			"@repo/components/*": ["./src/*"],
+			"@repo/shadcn/*": ["../shadcn/src/*"]
+		}
+	},
+	"exclude": ["node_modules"]
+}

@@ -5,9 +5,17 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"],
-			"@repo/shadcn/*": ["../../packages/shadcn/src/*"]
+			"@repo/shadcn/*": ["../../packages/shadcn/src/*"],
+			"@repo/components/*": ["../../packages/components/src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"../../packages/shadcn/src/*",
+		"../../packages/components/src/*"
+	],
 	"exclude": ["node_modules"]
 }

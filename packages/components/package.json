@@ -1,22 +1,19 @@
 {
-	"name": "main",
-	"version": "0.0.0",
+	"name": "@repo/components",
 	"private": true,
+	"exports": {
+		"./*": "./src/*"
+	},
 	"scripts": {
-		"dev": "next dev --port 3000",
-		"build": "next build",
 		"test": "vitest run",
-		"start": "next start",
 		"lint": "biome check",
 		"lint:fix": "biome check --fix --unsafe",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@radix-ui/react-slot": "catalog:",
 		"@repo/shadcn": "workspace:*",
-		"@repo/components": "workspace:*",
 		"lucide-react": "catalog:",
-		"next": "^16.0.7",
-		"next-themes": "^0.4.6",
 		"react": "catalog:",
 		"react-dom": "catalog:"
 	},
@@ -24,14 +21,10 @@
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
-		"@tailwindcss/postcss": "catalog:",
-		"@testing-library/jest-dom": "^6.9.1",
-		"@testing-library/react": "^16.3.0",
 		"@types/node": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
-		"@vitest/coverage-v8": "catalog:",
-		"typescript": "catalog:",
-		"vitest": "catalog:"
+		"@vitejs/plugin-react-swc": "^4.2.2",
+		"tsup": "^8.5.1"
 	}
 }
