@@ -1,0 +1,30 @@
+{
+	"name": "@repo/vitest-config",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": "./dist/index.js",
+		"./base": "./dist/configs/base-config.js",
+		"./ui": "./dist/configs/ui-config.js"
+	},
+	"scripts": {
+		"dev": "tsc --watch",
+		"build": "tsc",
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe",
+		"prepare": "pnpm build"
+	},
+	"dependencies": {
+		"@testing-library/react": "^16.3.0",
+		"vitest": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@vitest/coverage-v8": "catalog:",
+		"jsdom": "^27.2.0",
+		"typescript": "catalog:"
+	}
+}

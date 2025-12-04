@@ -9,8 +9,10 @@
 		"dev": "turbo dev",
 		"build": "turbo build",
 		"test": "turbo test",
+		"test:coverage": "vitest run --coverage",
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint:fix",
+		"format": "biome format --write",
 		"typecheck": "turbo typecheck",
 		"prepare": "husky"
 	},
@@ -18,9 +20,12 @@
 		"@biomejs/biome": "2.3.8",
 		"@changesets/cli": "^2.29.8",
 		"@repo/biome": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
+		"@vitest/coverage-v8": "catalog:",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.7",
-		"turbo": "^2.6.2"
+		"turbo": "^2.6.2",
+		"vitest": "catalog:"
 	},
 	"packageManager": "pnpm@10.15.1"
 }

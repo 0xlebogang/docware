@@ -1,6 +1,8 @@
 {
 	"$schema": "https://turborepo.com/schema.json",
 	"ui": "tui",
+	"noUpdateNotifier": true,
+	"globalDependencies": ["!README"],
 	"tasks": {
 		"dev": {
 			"cache": false,
@@ -11,10 +13,17 @@
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
 			"outputs": [".next/**", "!.next/cache/**"]
 		},
+		"test": {
+			"outputs": ["coverage/**"]
+		},
+		"//#test:coverage": {
+			"dependsOn": ["^test"]
+		},
 		"lint": {
 			"outputs": [".ruff-cache/**"]
 		},
 		"lint:fix": {},
+		"//#format": {},
 		"typecheck": {}
 	}
 }

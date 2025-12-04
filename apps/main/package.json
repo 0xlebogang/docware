@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "next dev --port 3000",
 		"build": "next build",
+		"test": "vitest run",
 		"start": "next start",
 		"lint": "biome check",
 		"lint:fix": "biome check --fix --unsafe",
@@ -21,10 +22,15 @@
 	"devDependencies": {
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
+		"@repo/vitest-config": "workspace:*",
 		"@tailwindcss/postcss": "catalog:",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.0",
 		"@types/node": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
-		"typescript": "catalog:"
+		"@vitest/coverage-v8": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
 	}
 }
