@@ -11,11 +11,11 @@
 	},
 	"iconLibrary": "lucide",
 	"aliases": {
-		"components": "@repo/components",
+		"components": "@/components",
 		"utils": "@repo/ui/lib/utils",
 		"ui": "@repo/ui/components",
-		"lib": "@repo/components/lib",
-		"hooks": "@repo/components/hooks"
+		"lib": "@/lib",
+		"hooks": "@/hooks"
 	},
 	"registries": {
 		"@tailark": "https://tailark.com/r/{name}.json"

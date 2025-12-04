@@ -23,7 +23,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 		return (
 			<Component
 				ref={ref}
-				className={cn("underline-offset-4 hover:underline", className)}
+				className={cn("underline-offset-4", className)}
 				{...props}
 			/>
 		);

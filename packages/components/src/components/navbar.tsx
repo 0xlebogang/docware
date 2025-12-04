@@ -70,14 +70,14 @@ export function Navbar({
 							</div>
 
 							<div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-								<Button asChild variant="outline" size="sm">
-									<Link href="#">
-										<span>Login</span>
+								<Button asChild variant="ghost" size="sm">
+									<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "#"}>
+										<span>Sign In</span>
 									</Link>
 								</Button>
 								<Button asChild size="sm">
-									<Link href="#">
-										<span>Login</span>
+									<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "#"}>
+										<span>Get Started</span>
 									</Link>
 								</Button>
 							</div>

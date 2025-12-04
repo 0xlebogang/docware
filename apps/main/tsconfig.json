@@ -6,7 +6,10 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@repo/shadcn/*": ["../../packages/shadcn/src/*"],
-			"@repo/components/*": ["../../packages/components/src/*"]
+			"@repo/components/*": [
+				"../../packages/components/src/components/*",
+				"../../packages/components/src/*"
+			]
 		}
 	},
 	"include": [
@@ -14,8 +17,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"../../packages/shadcn/src/*",
-		"../../packages/components/src/*"
+		"../../packages/ui/src/**/*",
+		"../../packages/components/src/**/*"
 	],
 	"exclude": ["node_modules"]
 }

@@ -1,24 +1,11 @@
 import { cn } from "@repo/ui/lib/utils";
 import { Book } from "lucide-react";
 
-export const Logo = ({
-	className,
-	uniColor,
-}: {
-	className?: string;
-	uniColor?: boolean;
-}) => {
+export const Logo = ({ className }: { className?: string }) => {
 	return (
 		<div className={cn("flex items-center space-x-2", className)}>
 			<LogoIcon />
-			<span
-				className={cn(
-					"font-bold text-lg",
-					uniColor ? "text-current" : "text-foreground",
-				)}
-			>
-				Docware
-			</span>
+			<span className={cn("font-bold text-lg", className)}>Docware.</span>
 		</div>
 	);
 };

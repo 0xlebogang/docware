@@ -2,7 +2,9 @@
 	"name": "@repo/components",
 	"private": true,
 	"exports": {
-		"./*": "./src/*"
+		"./components/*": "./src/components/*.tsx",
+		"./lib/*": "./src/lib/*.ts",
+		"./hooks/*": "./src/hooks/*.ts"
 	},
 	"scripts": {
 		"test": "vitest run",

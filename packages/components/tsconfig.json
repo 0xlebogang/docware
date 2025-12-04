@@ -1,15 +1,14 @@
 {
 	"extends": "@repo/tsconfig/react",
 	"compilerOptions": {
-		"declaration": true,
-		"module": "preserve",
-		"moduleResolution": "bundler",
 		"baseUrl": ".",
 		"paths": {
+			"@/*": ["./src/*"],
+			"@/components/*": ["./src/components/*"],
 			"@repo/components/*": ["./src/*"],
 			"@repo/ui/*": ["../ui/src/*"]
 		}
 	},
-	"include": ["src/**/*.tsx", "../ui/src/*"],
+	"include": ["src/**/*.tsx"],
 	"exclude": ["node_modules"]
 }
