@@ -24,6 +24,9 @@ catalogs:
     '@vitest/coverage-v8':
       specifier: 4.0.15
       version: 4.0.15
+    better-auth:
+      specifier: 1.4.5
+      version: 1.4.5
     clsx:
       specifier: ^2.1.1
       version: 2.1.1
@@ -77,12 +80,21 @@ importers:
 
   apps/auth:
     dependencies:
+      '@prisma/client':
+        specifier: ^7.1.0
+        version: 7.1.0(prisma@7.1.0(@types/react@19.2.7)(better-sqlite3@12.5.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.9.3))(typescript@5.9.3)
+      '@repo/better-auth':
+        specifier: workspace:*
+        version: link:../../packages/better-auth
       '@repo/components':
         specifier: workspace:*
         version: link:../../packages/components
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      better-auth:
+        specifier: 'catalog:'
+        version: 1.4.5(next@16.0.7(@babel/core@7.28.5)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       lucide-react:
         specifier: 'catalog:'
         version: 0.555.0(react@19.2.1)
@@ -92,6 +104,9 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      pg:
+        specifier: ^8.16.3
+        version: 8.16.3
       react:
         specifier: 'catalog:'
         version: 19.2.1
@@ -203,7 +218,7 @@ importers:
         specifier: workspace:*
         version: link:../database
       better-auth:
-        specifier: ^1.4.5
+        specifier: 'catalog:'
         version: 1.4.5(next@16.0.7(@babel/core@7.28.5)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       dotenv:
         specifier: ^17.2.3

@@ -1,8 +1,16 @@
+"use client";
+
+import { signIn } from "@repo/better-auth/client";
 import { Button } from "@repo/ui/components/button";
 
 export default function GoogleButton() {
 	return (
-		<Button type="button" variant="outline" className="w-full">
+		<Button
+			onClick={handleGoogleSignIn}
+			type="button"
+			variant="outline"
+			className="w-full"
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="0.98em"
@@ -30,4 +38,10 @@ export default function GoogleButton() {
 			<span>Google</span>
 		</Button>
 	);
+}
+
+async function handleGoogleSignIn() {
+	await signIn.social({
+		provider: "google",
+	});
 }
