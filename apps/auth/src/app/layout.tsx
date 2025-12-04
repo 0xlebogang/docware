@@ -1,6 +1,5 @@
 import Footer from "@repo/components/footer";
 import { Navbar } from "@repo/components/navbar";
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "@repo/ui/globals.css";
@@ -25,7 +24,9 @@ export default function RootLayout({
 			>
 				<Providers>
 					<Navbar />
-					{children}
+					<section className="flex min-h-screen bg-backgound px-4 py-16 md:py-32 dark:bg-transparent">
+						{children}
+					</section>
 					<Footer />
 				</Providers>
 			</body>
