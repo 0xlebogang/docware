@@ -1,7 +1,5 @@
 {
-	"name": "@repo/ui",
-	"version": "0.0.0",
-	"type": "module",
+	"name": "@repo/shadcn",
 	"private": true,
 	"exports": {
 		"./globals.css": "./src/styles/globals.css",
