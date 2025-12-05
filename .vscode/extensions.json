@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+        "editorconfig.editorconfig",
+        "biomejs.biome",
+        "tamasfe.even-better-toml",
+				"hverlin.mise-vscode",
+				"ms-python.python",
+				"bradlc.vscode-tailwindcss",
+				"vitest.explorer",
+				"redhat.vscode-yaml"
+			]
+}
