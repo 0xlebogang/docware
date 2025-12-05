@@ -21,6 +21,9 @@
 		"react": "catalog:",
 		"react-dom": "catalog:"
 	},
+	"peerDependencies": {
+		"pg": "catalog:"
+	},
 	"devDependencies": {
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
