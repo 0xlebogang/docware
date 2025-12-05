@@ -2,6 +2,10 @@
 	"$schema": "https://turborepo.com/schema.json",
 	"extends": ["//"],
 	"tasks": {
+		"db:studio": {
+			"cache": false,
+			"persistent": true
+		},
 		"db:generate": {
 			"outputs": ["src/generated/**"]
 		},
