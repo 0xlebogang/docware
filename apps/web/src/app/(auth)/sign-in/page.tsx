@@ -1,20 +1,52 @@
-import type { Metadata } from "next";
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "@repo/better-auth/client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
 import GoogleButton from "@/components/google-button";
 import { LogoIcon } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-export const metadata: Metadata = {
-	title: "Sign In - Docware",
-	description: "Sign in to your Docware account",
-	keywords: ["Docware", "Sign In"],
-};
+import {
+	type SignInUserInput,
+	signInUserSchema,
+} from "@/lib/validation/user-schema";
 
 export default function SignIn() {
+	const {
+		register,
+		handleSubmit,
+		setError,
+		formState: { errors, isSubmitting },
+	} = useForm({
+		resolver: zodResolver(signInUserSchema),
+		resetOptions: {
+			keepDefaultValues: true,
+		},
+		mode: "onSubmit",
+	});
+
+	async function onSubmit(data: SignInUserInput) {
+		const { error } = await signIn.email({
+			email: data.email,
+			password: data.password,
+		});
+
+		if (error) {
+			setError("root", { type: "server", message: error.message });
+			return;
+		}
+		return redirect(process.env.NEXT_PUBLIC_DASHBOARD_URL as string);
+	}
+
 	return (
-		<form action="" className="max-w-92 m-auto h-fit w-full">
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="max-w-92 m-auto h-fit w-full"
+		>
 			<div className="p-6">
 				<div>
 					<Link href="/" aria-label="go home">
@@ -38,21 +70,48 @@ export default function SignIn() {
 					<hr className="border-dashed" />
 				</div>
 
+				{errors.root && (
+					<p className="mb-4 rounded-md p-3 text-sm text-red-700">
+						{errors.root.message}
+					</p>
+				)}
+
 				<div className="space-y-6">
 					<div className="space-y-2">
-						<Label htmlFor="email" className="block text-sm">
-							Email
-						</Label>
-						<Input type="email" required name="email" id="email" />
+						<div className="w-full flex justify-between items-center">
+							<Label htmlFor="email" className="block text-sm">
+								Email
+							</Label>
+							{errors.email && (
+								<p className="text-xs text-destructive">
+									{errors.email.message}
+								</p>
+							)}
+						</div>
+						<Input type="email" required {...register("email")} id="email" />
 					</div>
 					<div className="space-y-2">
-						<Label htmlFor="password" className="block text-sm">
-							Password
-						</Label>
-						<Input type="password" required name="password" id="password" />
+						<div className="w-full flex justify-between items-center">
+							<Label htmlFor="password" className="block text-sm">
+								Password
+							</Label>
+							{errors.password && (
+								<p className="text-xs text-destructive">
+									{errors.password.message}
+								</p>
+							)}
+						</div>
+						<Input
+							type="password"
+							required
+							{...register("password")}
+							id="password"
+						/>
 					</div>
 
-					<Button className="w-full">Continue</Button>
+					<Button disabled={isSubmitting} className="w-full">
+						{isSubmitting ? "Loading..." : "Continue"}
+					</Button>
 				</div>
 			</div>
 

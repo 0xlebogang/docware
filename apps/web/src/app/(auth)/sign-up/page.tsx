@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn, signUp } from "@repo/better-auth/client";
+import { signUp } from "@repo/better-auth/client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -19,8 +19,7 @@ export default function SignUpForm() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
-		setValue,
+		formState: { errors, isSubmitting },
 		getValues,
 		setError,
 	} = useForm({
@@ -39,14 +38,13 @@ export default function SignUpForm() {
 	});
 
 	async function onSubmit(data: CreateUserInput) {
-		setValue("isLoading", true);
-
 		const values = getValues();
 		if (values.password !== values.confirmPassword) {
 			setError("confirmPassword", {
 				type: "value",
 				message: "Passwords do not match",
 			});
+			return;
 		}
 
 		const { error } = await signUp.email({
@@ -59,7 +57,6 @@ export default function SignUpForm() {
 			setError("root", { type: "server", message: error.message });
 			return;
 		}
-		setValue("isLoading", false);
 		return redirect(process.env.NEXT_PUBLIC_SIGN_IN_URL as string);
 	}
 
@@ -167,12 +164,8 @@ export default function SignUpForm() {
 						/>
 					</div>
 
-					<Button
-						disabled={getValues("isLoading")}
-						type="submit"
-						className="w-full"
-					>
-						{getValues("isLoading") ? "Loading..." : "Continue"}
+					<Button disabled={isSubmitting} type="submit" className="w-full">
+						{isSubmitting ? "Loading..." : "Continue"}
 					</Button>
 				</div>
 			</div>
