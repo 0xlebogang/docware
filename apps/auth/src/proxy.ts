@@ -8,7 +8,7 @@ export const config = {
 
 export async function proxy(request: NextRequest) {
 	// check if user is authenticated
-	const isAuthenticated = await isAthenticated(request.headers);
+	const isAuthenticated = await checkAuthentication(request.headers);
 	if (isAuthenticated) {
 		return NextResponse.redirect(process.env.NEXT_PUBLIC_DASHBOARD_URL || "");
 	}
@@ -19,7 +19,7 @@ export async function proxy(request: NextRequest) {
 	}
 }
 
-export async function isAthenticated(headers: Headers): Promise<boolean> {
+export async function checkAuthentication(headers: Headers) {
 	const session = await auth.api.getSession({ headers });
-	return !!session;
+	return !!session?.user;
 }
