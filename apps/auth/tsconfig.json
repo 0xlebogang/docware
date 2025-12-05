@@ -11,12 +11,7 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts",
-		"../../packages/ui/src/**/*",
-		"../../packages/components/src/**/*",
-		"../../packages/better-auth/src/**/*",
-		"src/components/components",
-		"src/lib"
+		"../../packages/better-auth/src/**/*"
 	],
 	"exclude": ["node_modules"]
 }
