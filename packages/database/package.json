@@ -6,8 +6,8 @@
 		".": "./src/index.ts"
 	},
 	"scripts": {
+		"dev": "dotenv -c -- prisma studio",
 		"test": "vitest run",
-		"db:studio": "dotenv -c -- prisma studio",
 		"db:push": "prisma db push",
 		"db:generate": "prisma generate",
 		"db:migrate": "prisma migrate dev",

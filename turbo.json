@@ -5,8 +5,15 @@
 	"globalDependencies": ["!README"],
 	"tasks": {
 		"dev": {
+			"dependsOn": ["//#services:up"],
 			"cache": false,
 			"persistent": true
+		},
+		"//#services:up": {
+			"cache": false
+		},
+		"//#services:down": {
+			"cache": false
 		},
 		"build": {
 			"dependsOn": ["^build"],
