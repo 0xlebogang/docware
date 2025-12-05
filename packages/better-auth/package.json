@@ -1,10 +1,10 @@
 {
 	"name": "@repo/better-auth",
-	"version": "0.0.0",
 	"private": true,
 	"exports": {
 		"./server": "./src/server.ts",
-		"./client": "./src/client.ts"
+		"./client": "./src/client.ts",
+		"./helpers": "./src/helpers.ts"
 	},
 	"scripts": {
 		"test": "vitest run",

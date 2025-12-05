@@ -12,6 +12,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@repo/better-auth": "workspace:*",
 		"@repo/components": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"lucide-react": "catalog:",
