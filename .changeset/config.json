@@ -2,10 +2,18 @@
 	"$schema": "https://unpkg.com/@changesets/config@3.1.2/schema.json",
 	"changelog": "@changesets/cli/changelog",
 	"commit": false,
-	"fixed": [],
+	"fixed": ["auth", "main"],
 	"linked": [],
 	"access": "restricted",
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
-	"ignore": ["@repo/biome", "@repo/tsconfig"]
+	"ignore": [
+		"@repo/biome",
+		"@repo/tsconfig",
+		"@repo/vitest-config",
+		"@repo/better-auth",
+		"@repo/components",
+		"@repo/database",
+		"@repo/ui"
+	]
 }
