@@ -7,7 +7,7 @@
 			"@/*": ["./src/*"],
 			"@repo/ui/*": ["../../packages/ui/src/*"],
 			"@repo/components/*": [
-				"../../packages/components/src/components/*",
+				"src/components/components/*",
 				"../../packages/components/src/*"
 			]
 		}
@@ -19,7 +19,8 @@
 		".next/types/**/*.ts",
 		"../../packages/ui/src/**/*",
 		"../../packages/components/src/**/*",
-		"../../packages/better-auth/src/**/*"
+		"../../packages/better-auth/src/**/*",
+		"src/components/components"
 	],
 	"exclude": ["node_modules"]
 }

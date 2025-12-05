@@ -2,8 +2,8 @@
 
 import { Button } from "@repo/ui/components/button";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-import { Link } from "./link";
 import { Logo } from "./logo";
 
 interface MenuItem {

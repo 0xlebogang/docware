@@ -5,7 +5,7 @@ import {
 	TicketCheckIcon,
 	Twitter,
 } from "lucide-react";
-import { Link } from "./link";
+import Link from "next/link";
 import { Logo } from "./logo";
 
 const links = [
