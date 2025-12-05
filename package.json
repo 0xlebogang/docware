@@ -13,8 +13,8 @@
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint:fix",
 		"format": "biome format --write",
-		"services:up": "docker-compose up -d",
-		"services:down": "docker-compose down",
+		"services:up": "docker compose up -d",
+		"services:down": "docker compose down",
 		"typecheck": "turbo typecheck",
 		"prepare": "husky"
 	},

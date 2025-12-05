@@ -125,6 +125,7 @@ Ensure you have the following tools installed on your system:
 	|------|-----|
 	| Main web app | [`http://localhost:3000`](http://localhost:3000) |
 	| Authentication app | [`http://localhost:3001`](http://localhost:3001) |
+	| Prisma Studio | _Prisma opens random ports on different OSs, you might need to scroll through the logs to find which port it opens_ |
 
 ### Contributing
 

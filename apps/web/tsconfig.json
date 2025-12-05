@@ -1,0 +1,17 @@
+{
+	"extends": "@repo/tsconfig/next",
+	"compilerOptions": {
+		"types": ["vitest/globals"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"../../packages/better-auth/src/**/*"
+	],
+	"exclude": ["node_modules"]
+}
