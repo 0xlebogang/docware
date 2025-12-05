@@ -1,20 +1,73 @@
-import type { Metadata } from "next";
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn, signUp } from "@repo/better-auth/client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
 import GoogleButton from "@/components/google-button";
 import { LogoIcon } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-export const metadata: Metadata = {
-	title: "Sign Up - Docware",
-	description: "Create a Docware account",
-	keywords: ["Docware", "Sign Up", "Register"],
-};
+import {
+	type CreateUserInput,
+	createUserSchema,
+} from "@/lib/validation/user-schema";
 
 export default function SignUpForm() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		setValue,
+		getValues,
+		setError,
+	} = useForm({
+		resolver: zodResolver(createUserSchema),
+		defaultValues: {
+			isLoading: false,
+			fullName: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+		},
+		resetOptions: {
+			keepDefaultValues: true,
+		},
+		mode: "onSubmit",
+	});
+
+	async function onSubmit(data: CreateUserInput) {
+		setValue("isLoading", true);
+
+		const values = getValues();
+		if (values.password !== values.confirmPassword) {
+			setError("confirmPassword", {
+				type: "value",
+				message: "Passwords do not match",
+			});
+		}
+
+		const { error } = await signUp.email({
+			name: data.fullName,
+			email: data.email,
+			password: data.password,
+		});
+
+		if (error) {
+			setError("root", { type: "server", message: error.message });
+			return;
+		}
+		setValue("isLoading", false);
+		return redirect(process.env.NEXT_PUBLIC_SIGN_IN_URL as string);
+	}
+
 	return (
-		<form action="" className="max-w-92 m-auto h-fit w-full">
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="max-w-92 m-auto h-fit w-full"
+		>
 			<div className="p-6">
 				<div>
 					<Link href="/" aria-label="go home">
@@ -38,47 +91,89 @@ export default function SignUpForm() {
 					<hr className="border-dashed" />
 				</div>
 
+				{errors.root && (
+					<p className="mb-4 rounded-md p-3 text-sm text-red-700">
+						{errors.root.message?.toString()}
+					</p>
+				)}
+
 				<div className="space-y-6">
-					<div className="grid grid-cols-2 gap-3">
-						<div className="space-y-2">
-							<Label htmlFor="firstName" className="block text-sm">
-								First Name
+					<div className="space-y-2">
+						<div className="w-full flex justify-between items-center">
+							<Label htmlFor="fullName" className="block text-sm">
+								Full Name
 							</Label>
-							<Input type="text" required name="firstName" id="firstName" />
+							{errors.fullName && (
+								<p className="text-xs text-destructive">
+									{errors.fullName.message}
+								</p>
+							)}
 						</div>
-						<div className="space-y-2">
-							<Label htmlFor="lastName" className="block text-sm">
-								Last Name
-							</Label>
-							<Input type="text" required name="lastName" id="lastName" />
-						</div>
+						<Input
+							{...register("fullName")}
+							type="text"
+							required
+							id="fullName"
+						/>
 					</div>
 
 					<div className="space-y-2">
-						<Label htmlFor="email" className="block text-sm">
-							Email
-						</Label>
-						<Input type="email" required name="email" id="email" />
+						<div className="w-full flex justify-between items-center">
+							<Label htmlFor="email" className="block text-sm">
+								Email
+							</Label>
+							{errors.email && (
+								<p className="text-xs text-destructive">
+									{errors.email.message}
+								</p>
+							)}
+						</div>
+						<Input {...register("email")} type="text" required id="email" />
 					</div>
 					<div className="space-y-2">
-						<Label htmlFor="password" className="block text-sm">
-							Password
-						</Label>
-						<Input type="password" required name="password" id="password" />
-					</div>
-					<div className="space-y-2">
-						<Label htmlFor="confirmPassword" className="block text-sm">
-							Confirm password
-						</Label>
+						<div className="w-full flex justify-between items-center">
+							<Label htmlFor="password" className="block text-sm">
+								Password
+							</Label>
+							{errors.password && (
+								<p className="text-xs text-destructive">
+									{errors.password.message}
+								</p>
+							)}
+						</div>
 						<Input
+							{...register("password")}
 							type="password"
 							required
-							name="confirmPassword"
+							id="password"
+						/>
+					</div>
+					<div className="space-y-2">
+						<div className="w-full flex justify-between items-center">
+							<Label htmlFor="confirmPassword" className="block text-sm">
+								Confirm Password
+							</Label>
+							{errors.confirmPassword && (
+								<p className="text-xs text-destructive">
+									{errors.confirmPassword.message}
+								</p>
+							)}
+						</div>
+						<Input
+							{...register("confirmPassword", {})}
+							type="password"
+							required
 							id="confirmPassword"
 						/>
 					</div>
 
-					<Button className="w-full">Continue</Button>
+					<Button
+						disabled={getValues("isLoading")}
+						type="submit"
+						className="w-full"
+					>
+						{getValues("isLoading") ? "Loading..." : "Continue"}
+					</Button>
 				</div>
 			</div>
 
