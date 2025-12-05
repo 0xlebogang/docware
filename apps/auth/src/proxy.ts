@@ -3,18 +3,13 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const config = {
 	// match all routes
-	matcher: "/:path*",
+	matcher: ["/dashboard"],
 };
 
 export async function proxy(request: NextRequest) {
 	// check if user is authenticated
 	const isAuthenticated = await checkAuthentication(request.headers);
-	if (isAuthenticated) {
-		return NextResponse.redirect(process.env.NEXT_PUBLIC_DASHBOARD_URL || "");
-	}
-
-	// redirect to sign-in if user is unauthenticated and trying to access the root path
-	if (request.nextUrl.pathname === "/") {
+	if (!isAuthenticated) {
 		return NextResponse.redirect(process.env.NEXT_PUBLIC_SIGN_IN_URL || "");
 	}
 }

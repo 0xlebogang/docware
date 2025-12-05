@@ -24,9 +24,7 @@ export default function RootLayout({
 			>
 				<Providers>
 					<Navbar />
-					<section className="flex min-h-screen bg-backgound px-4 py-16 md:py-32 dark:bg-transparent">
-						{children}
-					</section>
+					{children}
 					<Footer />
 				</Providers>
 			</body>

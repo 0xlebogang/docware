@@ -23,9 +23,11 @@
 		"react-dom": "catalog:"
 	},
 	"peerDependencies": {
+		"@prisma/client": "^7.1.0",
 		"pg": "catalog:"
 	},
 	"devDependencies": {
+		"@prisma/client": "^7.1.0",
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
 		"@repo/vitest-config": "workspace:*",
