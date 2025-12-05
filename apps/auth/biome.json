@@ -1,5 +1,10 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
 	"extends": ["@repo/biome/next"],
-	"root": false
+	"root": false,
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	}
 }

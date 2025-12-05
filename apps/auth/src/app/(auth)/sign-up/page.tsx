@@ -1,10 +1,10 @@
-import { Button } from "@repo/ui/components/button";
-import { Input } from "@repo/ui/components/input";
-import { Label } from "@repo/ui/components/label";
 import type { Metadata } from "next";
 import Link from "next/link";
 import GoogleButton from "@/components/google-button";
 import { LogoIcon } from "@/components/logo";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export const metadata: Metadata = {
 	title: "Sign Up - Docware",

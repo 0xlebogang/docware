@@ -1,5 +1,5 @@
-import { cn } from "@repo/ui/lib/utils";
 import { Book } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const Logo = ({ className }: { className?: string }) => {
 	return (

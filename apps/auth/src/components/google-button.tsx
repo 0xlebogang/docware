@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "@repo/better-auth/client";
-import { Button } from "@repo/ui/components/button";
+import { Button } from "@/components/ui/button";
 
 export default function GoogleButton() {
 	return (

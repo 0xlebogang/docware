@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@repo/ui/components/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 
 interface MenuItem {

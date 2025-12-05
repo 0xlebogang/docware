@@ -4,12 +4,7 @@
 		"types": ["vitest/globals"],
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/*"],
-			"@repo/ui/*": ["../../packages/ui/src/*"],
-			"@repo/components/*": [
-				"src/components/components/*",
-				"../../packages/components/src/*"
-			]
+			"@/*": ["./src/*"]
 		}
 	},
 	"include": [
@@ -20,7 +15,8 @@
 		"../../packages/ui/src/**/*",
 		"../../packages/components/src/**/*",
 		"../../packages/better-auth/src/**/*",
-		"src/components/components"
+		"src/components/components",
+		"src/lib"
 	],
 	"exclude": ["node_modules"]
 }

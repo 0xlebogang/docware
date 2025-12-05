@@ -4,14 +4,14 @@ packages:
   - packages/*
 
 catalog:
-  '@radix-ui/react-slot': ^1.2.4
+  '@radix-ui/react-slot': 1.2.4
   '@tailwindcss/postcss': 4.1.17
   '@types/node': 24.10.1
   '@types/react': 19.2.7
   '@types/react-dom': 19.2.3
   '@vitest/coverage-v8': 4.0.15
   better-auth: 1.4.5
-  clsx: ^2.1.1
+  clsx: 2.1.1
   lucide-react: 0.555.0
   pg: ^8.16.3
   react: 19.2.1
