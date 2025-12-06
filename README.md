@@ -123,8 +123,8 @@ Ensure you have the following tools installed on your system:
 
 	| Name | URL |
 	|------|-----|
-	| Main web app | [`http://localhost:3000`](http://localhost:3000) |
-	| Authentication app | [`http://localhost:3001`](http://localhost:3001) |
+	| Frontend | [`http://localhost:3001`](http://localhost:3001) |
+	| API | [`http://localhost:5000`](http://localhost:5000) |
 	| Prisma Studio | _Prisma opens random ports on different OSs, you might need to scroll through the logs to find which port it opens_ |
 
 ### Contributing
@@ -140,5 +140,5 @@ This project is licensed under the AGPL-3.0 License. See the [LICENSE](./LICENSE
 ---
 
 <div align='center'>
-	<sub>Developed with ❤️ by <a href="https://linkedin.com/in/phoshokoml">Lebogang Phoshoko</a></sub>
+	<sub>Developed with ❤️ by <a href="https://lebophoshoko.dedyn.io">Lebogang Phoshoko</a></sub>
 </div>
