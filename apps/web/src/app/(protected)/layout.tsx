@@ -1,4 +1,6 @@
 import type * as React from "react";
+import AppSidebar from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export interface ProtectedPageLayoutProps {
 	children: Readonly<React.ReactNode>;
@@ -8,9 +10,9 @@ export default function ProtectedPageLayout({
 	children,
 }: ProtectedPageLayoutProps) {
 	return (
-		<section>
-			<h1>Protected Page Layout</h1>
-			{children}
-		</section>
+		<SidebarProvider>
+			<AppSidebar />
+			<SidebarInset>{children}</SidebarInset>
+		</SidebarProvider>
 	);
 }
