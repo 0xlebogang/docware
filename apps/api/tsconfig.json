@@ -1,0 +1,16 @@
+{
+	"extends": "@repo/tsconfig/base",
+	"compilerOptions": {
+		"types": ["node"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": [
+		"src",
+		"../../packages/better-auth/src/**/*.ts",
+		"../../packages/database/src/**/*.ts"
+	],
+	"exclude": ["node_modules", "dist"]
+}
