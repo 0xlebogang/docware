@@ -6,6 +6,7 @@ import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import { useProtectedRoute } from "@/hooks/use-protected-route";
 import { Logo } from "./logo";
 import UserButton from "./user-button";
 
@@ -29,9 +30,12 @@ export function Navbar({
 }) {
 	const [menuState, setMenuState] = React.useState(false);
 	const { data: session, isPending } = useSession();
+	const { isProtected } = useProtectedRoute();
 
 	return (
-		<header className="fixed top-0 left-0 w-full z-20">
+		<header
+			className={`fixed top-0 left-0 w-full z-20 ${isProtected ? "hidden" : null}`}
+		>
 			<nav
 				data-state={menuState && "active"}
 				className="fixed z-20 w-full border-b border-dashed bg-background backdrop-blur md:relative dark:bg-background/50"
@@ -48,7 +52,7 @@ export function Navbar({
 							</Link>
 
 							{isPending ? (
-								<Spinner />
+								<Spinner className="lg:hidden" />
 							) : session?.session ? (
 								<UserButton
 									name={session.user.name}
