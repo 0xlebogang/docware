@@ -12,9 +12,11 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 export interface UserButtonProps {
 	name: string;
+	className?: string;
 	imageUrl: string | null | undefined;
 	menuItems?: {
 		name: string;
@@ -29,6 +31,7 @@ const defaultUserMenuItems = [
 
 export default function UserButton({
 	name,
+	className,
 	imageUrl,
 	menuItems = defaultUserMenuItems,
 }: UserButtonProps) {
@@ -47,7 +50,7 @@ export default function UserButton({
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
+			<DropdownMenuTrigger className={cn(className)} asChild>
 				<Button variant="ghost" className="relative h-8 w-8 rounded-full">
 					<Avatar className="h-8 w-8">
 						<AvatarImage src={imageUrl || undefined} />

@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { Logo } from "./logo";
 import UserButton from "./user-button";
 
@@ -46,10 +47,13 @@ export function Navbar({
 								<Logo />
 							</Link>
 
-							{session?.session ? (
+							{isPending ? (
+								<Spinner />
+							) : session?.session ? (
 								<UserButton
 									name={session.user.name}
 									imageUrl={session.user.image}
+									className="lg:hidden"
 								/>
 							) : (
 								<button
@@ -81,7 +85,9 @@ export function Navbar({
 							</div>
 
 							<div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-								{session?.session ? (
+								{isPending ? (
+									<Spinner />
+								) : session?.session ? (
 									<UserButton
 										name={session.user.name}
 										imageUrl={session.user.image}
