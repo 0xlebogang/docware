@@ -1,0 +1,4 @@
+{
+	"extends": ["@repo/biome"],
+	"root": false
+}
