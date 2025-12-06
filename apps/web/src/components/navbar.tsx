@@ -48,7 +48,7 @@ export function Navbar({
 							</Link>
 
 							{isPending ? (
-								<Spinner />
+								<Spinner className="lg:hidden" />
 							) : session?.session ? (
 								<UserButton
 									name={session.user.name}
