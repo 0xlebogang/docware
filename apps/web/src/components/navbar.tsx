@@ -6,6 +6,7 @@ import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
+import UserButton from "./user-button";
 
 export interface MenuItem {
 	name: string;
@@ -23,9 +24,10 @@ export function Navbar({
 	menuItems = defaultMenuItems,
 }: {
 	menuItems?: MenuItem[];
+	userMenuItem?: MenuItem[];
 }) {
 	const [menuState, setMenuState] = React.useState(false);
-	const { data: session } = useSession();
+	const { data: session, isPending } = useSession();
 
 	return (
 		<header className="fixed top-0 left-0 w-full z-20">
@@ -73,9 +75,10 @@ export function Navbar({
 
 							<div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
 								{session?.session ? (
-									<>
-										<p>Autheticated</p>
-									</>
+									<UserButton
+										name={session.user.name}
+										imageUrl={session.user.image}
+									/>
 								) : (
 									<>
 										<Button asChild variant="ghost" size="sm">
