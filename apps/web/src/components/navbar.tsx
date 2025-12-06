@@ -1,12 +1,15 @@
 "use client";
 
+import { useSession } from "@repo/better-auth/client";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { Logo } from "./logo";
+import UserButton from "./user-button";
 
-interface MenuItem {
+export interface MenuItem {
 	name: string;
 	href: string;
 }
@@ -22,8 +25,10 @@ export function Navbar({
 	menuItems = defaultMenuItems,
 }: {
 	menuItems?: MenuItem[];
+	userMenuItem?: MenuItem[];
 }) {
 	const [menuState, setMenuState] = React.useState(false);
+	const { data: session, isPending } = useSession();
 
 	return (
 		<header className="fixed top-0 left-0 w-full z-20">
@@ -42,15 +47,25 @@ export function Navbar({
 								<Logo />
 							</Link>
 
-							<button
-								type="button"
-								onClick={() => setMenuState(!menuState)}
-								aria-label={menuState === true ? "Close Menu" : "Open Menu"}
-								className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
-							>
-								<Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-								<X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-							</button>
+							{isPending ? (
+								<Spinner />
+							) : session?.session ? (
+								<UserButton
+									name={session.user.name}
+									imageUrl={session.user.image}
+									className="lg:hidden"
+								/>
+							) : (
+								<button
+									type="button"
+									onClick={() => setMenuState(!menuState)}
+									aria-label={menuState === true ? "Close Menu" : "Open Menu"}
+									className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
+								>
+									<Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+									<X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+								</button>
+							)}
 						</div>
 
 						<div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
@@ -70,16 +85,27 @@ export function Navbar({
 							</div>
 
 							<div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-								<Button asChild variant="ghost" size="sm">
-									<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "#"}>
-										<span>Sign In</span>
-									</Link>
-								</Button>
-								<Button asChild size="sm">
-									<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "#"}>
-										<span>Get Started</span>
-									</Link>
-								</Button>
+								{isPending ? (
+									<Spinner />
+								) : session?.session ? (
+									<UserButton
+										name={session.user.name}
+										imageUrl={session.user.image}
+									/>
+								) : (
+									<>
+										<Button asChild variant="ghost" size="sm">
+											<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "#"}>
+												<span>Sign In</span>
+											</Link>
+										</Button>
+										<Button asChild size="sm">
+											<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "#"}>
+												<span>Get Started</span>
+											</Link>
+										</Button>
+									</>
+								)}
 							</div>
 						</div>
 					</div>
