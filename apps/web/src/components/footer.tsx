@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Facebook,
 	Instagram,
@@ -6,6 +8,7 @@ import {
 	Twitter,
 } from "lucide-react";
 import Link from "next/link";
+import { useProtectedRoute } from "@/hooks/use-protected-route";
 import { Logo } from "./logo";
 
 const links = [
@@ -36,8 +39,10 @@ const links = [
 ];
 
 export default function Footer() {
+	const { isProtected } = useProtectedRoute();
+
 	return (
-		<footer className="py-8 md:py-16">
+		<footer className={`py-8 md:py-16 ${isProtected ? "hidden" : null}`}>
 			<div className="mx-auto max-w-7xl px-6 border-t border-muted-foreground/20 py-8 md:py-16">
 				<Link href="/" aria-label="go home" className="mx-auto block size-fit">
 					<Logo />
