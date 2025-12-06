@@ -1,5 +1,6 @@
 {
 	"name": "@repo/better-auth",
+	"version": "0.0.1",
 	"private": true,
 	"exports": {
 		"./server": "./src/server.ts",
