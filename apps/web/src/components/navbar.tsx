@@ -1,12 +1,13 @@
 "use client";
 
+import { useSession } from "@repo/better-auth/client";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 
-interface MenuItem {
+export interface MenuItem {
 	name: string;
 	href: string;
 }
@@ -24,6 +25,7 @@ export function Navbar({
 	menuItems?: MenuItem[];
 }) {
 	const [menuState, setMenuState] = React.useState(false);
+	const { data: session } = useSession();
 
 	return (
 		<header className="fixed top-0 left-0 w-full z-20">
@@ -70,16 +72,24 @@ export function Navbar({
 							</div>
 
 							<div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-								<Button asChild variant="ghost" size="sm">
-									<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "#"}>
-										<span>Sign In</span>
-									</Link>
-								</Button>
-								<Button asChild size="sm">
-									<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "#"}>
-										<span>Get Started</span>
-									</Link>
-								</Button>
+								{session?.session ? (
+									<>
+										<p>Autheticated</p>
+									</>
+								) : (
+									<>
+										<Button asChild variant="ghost" size="sm">
+											<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "#"}>
+												<span>Sign In</span>
+											</Link>
+										</Button>
+										<Button asChild size="sm">
+											<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "#"}>
+												<span>Get Started</span>
+											</Link>
+										</Button>
+									</>
+								)}
 							</div>
 						</div>
 					</div>
