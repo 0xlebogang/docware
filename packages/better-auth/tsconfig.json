@@ -7,6 +7,6 @@
 			"@repo/database/*": ["./src/*"]
 		}
 	},
-	"include": ["**/*.ts"],
+	"include": ["**/*.ts", "../vitest-config/src/**/*.ts"],
 	"exclude": ["node_modules"]
 }

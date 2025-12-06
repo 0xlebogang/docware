@@ -23,6 +23,8 @@
 		"@better-auth/cli": "^1.4.5",
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
-		"@repo/vitest-config": "workspace:*"
+		"@repo/vitest-config": "workspace:*",
+		"@vitest/coverage-v8": "catalog:",
+		"vitest": "catalog:"
 	}
 }

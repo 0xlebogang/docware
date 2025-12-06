@@ -18,8 +18,3 @@ declare global {
 
 globalThis.render = rtlRender;
 globalThis.testScreen = screen;
-
-// Mock environment variables
-process.env.NEXT_PUBLIC_AUTH_URL = "http://localhost:3000";
-process.env.NEXT_PUBLIC_DASHBOARD_URL = "http://localhost:3001/dashboard";
-process.env.NEXT_PUBLIC_SIGN_IN_URL = "http://localhost:3001/sign-in";

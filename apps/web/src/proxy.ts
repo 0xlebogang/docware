@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const config = {
 	// match all routes
-	matcher: ["/dashboard"],
+	matcher: ["/dashboard", "/profile", "/settings"],
 };
 
 export async function proxy(request: NextRequest) {
