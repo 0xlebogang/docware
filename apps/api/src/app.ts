@@ -9,6 +9,13 @@ const app = new Hono();
 // add logging middlware globally
 app.use(logger());
 
+app.use(
+	cors({
+		origin: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [],
+		credentials: true,
+	}),
+);
+
 // Auth route
 app.on(["GET", "POST", "OPTIONS"], "/api/auth/*", (c) =>
 	auth.handler(c.req.raw),
@@ -18,13 +25,6 @@ app.on(["GET", "POST", "OPTIONS"], "/api/auth/*", (c) =>
 app.get("/health", (c) => {
 	return c.json({ message: "ok" });
 });
-
-app.use(
-	cors({
-		origin: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [],
-		credentials: true,
-	}),
-);
 
 app.route("/api", routes);
 
