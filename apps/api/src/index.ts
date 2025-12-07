@@ -7,6 +7,6 @@ serve(
 		port: process.env.PORT ? parseInt(process.env.PORT, 10) : 5000,
 	},
 	(info) => {
-		console.log(`Server running on ${info.address}:${info.port}`);
+		console.log(`Listening at ${info.address}:${info.port}`);
 	},
 );

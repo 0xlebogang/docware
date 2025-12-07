@@ -1,6 +1,5 @@
 "use client";
 
-import { signOut } from "@repo/better-auth/client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,6 +11,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { signOut } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 
 export interface UserButtonProps {

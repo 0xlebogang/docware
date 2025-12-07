@@ -11,7 +11,7 @@
 		"test": "vitest run",
 		"lint": "biome check",
 		"lint:fix": "biome check --fix --unsafe",
-		"schema:generate": "better-auth generate -y --output ../database/prisma/schema/auth.prisma",
+		"schema:generate": "better-auth generate -y --config src/server.ts --output ../database/prisma/schema/auth.prisma",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
