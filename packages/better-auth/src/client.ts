@@ -1,4 +1,6 @@
-import "dotenv/config";
 import { createAuthClient } from "better-auth/react";
 
-export const { signIn, signUp, signOut, useSession } = createAuthClient();
+export const getAuthClient = (baseURL?: string) =>
+	createAuthClient({
+		baseURL,
+	});

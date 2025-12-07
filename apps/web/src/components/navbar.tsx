@@ -1,12 +1,12 @@
 "use client";
 
-import { useSession } from "@repo/better-auth/client";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { useProtectedRoute } from "@/hooks/use-protected-route";
+import { useSession } from "@/lib/auth-client";
 import { Logo } from "./logo";
 import UserButton from "./user-button";
 

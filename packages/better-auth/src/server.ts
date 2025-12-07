@@ -2,13 +2,11 @@ import { prisma } from "@repo/database";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 
-// Re-export Next.js handler
-export { toNextJsHandler } from "better-auth/next-js";
-
 export const auth = betterAuth({
 	database: prismaAdapter(prisma, {
 		provider: "postgresql",
 	}),
+	trustedOrigins: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [],
 	emailAndPassword: {
 		enabled: true,
 		autoSignIn: false,
