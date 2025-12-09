@@ -19,6 +19,12 @@
 		"dev": {
 			"cache": false,
 			"persistent": true
+		},
+		"//#services:up": {
+			"cache": false
+		},
+		"//#services:down": {
+			"cache": false
 		}
 	}
 }

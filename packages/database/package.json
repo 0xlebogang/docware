@@ -1,0 +1,31 @@
+{
+	"name": "@repo/database",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe",
+		"db:generate": "prisma generate",
+		"db:makemigration": "prisma migrate dev",
+		"db:migrate": "prisma migrate deploy",
+		"db:push": "prisma db push",
+		"db:studio": "prisma studio"
+	},
+	"devDependencies": {
+		"@repo/biome": "*",
+		"@repo/tsconfig": "*",
+		"@types/node": "^24.10.2",
+		"@types/pg": "^8.15.6",
+		"prisma": "^7.1.0",
+		"prisma-zod-generator": "^2.1.2"
+	},
+	"dependencies": {
+		"@prisma/adapter-pg": "^7.1.0",
+		"@prisma/client": "^7.1.0",
+		"dotenv": "^17.2.3",
+		"pg": "^8.16.3"
+	}
+}
