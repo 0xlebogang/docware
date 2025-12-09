@@ -1,0 +1,8 @@
+{
+	"extends": "@repo/tsconfig/base",
+	"compilerOptions": {
+		"@/*": ["src/*"]
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}
