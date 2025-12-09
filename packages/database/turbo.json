@@ -1,0 +1,20 @@
+{
+	"$schema": "https://turborepo.com/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"db:generate": {
+			"outputs": ["src/generated/**"]
+		},
+		"db:push": {
+			"dependsOn": ["db:generate"]
+		},
+		"db:makemigrations": {
+			"outputs": ["prisma/migrations"]
+		},
+		"db:migrate": {},
+		"db:studio": {
+			"cache": false,
+			"persistent": true
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "../node_modules/prisma-zod-generator/lib/config/schema.json",
+	"output": "../src/generated/zod",
+	"variants": {
+		"input": {
+			"enabled": true,
+			"strictMode": true,
+			"excludeFields": ["id", "createdAt", "updatedAt"]
+		}
+	},
+	"naming": {
+		"pureModel": {
+			"filePattern": "{Model}.model.ts",
+			"exportNamePattern": "{Model}Model"
+		},
+		"input": {
+			"filePattern": "inputs/{Model}{InputType}.schema.ts",
+			"exportNamePattern": "{Model}{InputType}Schema"
+		},
+		"enum": {
+			"filePattern": "enums/{Enum}.enum.ts",
+			"exportNamePattern": "{Enum}EnumSchema"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"extends": "@repo/tsconfig/base",
+	"compilerOptions": {
+		"types": ["bun"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": [
+		"src",
+		"../../packages/database/src/*",
+		"../../packages/hono/src/*",
+		"../../packages/auth/src/*"
+	],
+	"exclude": ["node_modules", "dist"]
+}

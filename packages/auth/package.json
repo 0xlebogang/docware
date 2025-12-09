@@ -1,0 +1,23 @@
+{
+	"name": "@repo/auth",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		"./server": "./src/server.ts",
+		"./client": "./src/client.ts"
+	},
+	"scripts": {
+		"generate-auth-schema": "better-auth generate -y --config ./src/server.ts --output ../database/prisma/schema/auth.prisma",
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe"
+	},
+	"dependencies": {
+		"@repo/database": "workspace:*",
+		"better-auth": "^1.4.6"
+	},
+	"devDependencies": {
+		"@better-auth/cli": "^1.4.6",
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*"
+	}
+}
