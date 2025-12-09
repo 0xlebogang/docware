@@ -1,0 +1,29 @@
+{
+	"name": "www",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/react": "^4.4.2",
+		"@repo/components": "workspace:*",
+		"@repo/tailwindcss": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"@tailwindcss/postcss": "^4.1.17",
+		"astro": "^5.16.4",
+		"next-themes": "^0.4.6",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@types/node": "^24.10.2",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3"
+	}
+}

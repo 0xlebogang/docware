@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "astro/tsconfigs/strict",
+    "@repo/tsconfig/react"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@repo/components/*": [
+        "../..packages/components/src/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
+    },
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+	"extends": "@repo/tsconfig/react",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@repo/components/*": ["./src/*"],
+			"@repo/ui/*": ["../ui/src/*"],
+		}
+	}
+}

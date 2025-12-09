@@ -1,0 +1,11 @@
+{
+	"extends": "@repo/tsconfig/react",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@repo/ui/*": ["./src/*"]
+		}
+	},
+	"include": ["src", "../tailwindcss/src/**/*"],
+	"exclude": ["node_modules"]
+}

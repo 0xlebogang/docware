@@ -1,0 +1,22 @@
+---
+import Navbar from '@repo/components/navbar'
+import {ThemeProvider} from 'next-themes'
+import "@repo/tailwindcss/main.css"
+---
+
+<ThemeProvider client:load attribute="class" defaultTheme='system'>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Docware | The new way to manage you project&apos;s documentation</title>
+	</head>
+	<body>
+		<Navbar signUpUrl={import.meta.env.PUBLIC_SIGN_UP_URL} signInUrl={import.meta.env.PUBLIC_SIGN_IN_URL} client:load />
+		<main class="absolute top-[66px] left-0 w-full py-8">
+			<slot />
+		</main>
+	</body>
+	</html>
+</ThemeProvider>

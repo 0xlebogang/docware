@@ -1,0 +1,19 @@
+{
+	"extends": "@repo/tsconfig/next",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts",
+		"../../packages/tailwindcss/src/**/*",
+		"../../packages/ui/src/**/*"
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,28 @@
+{
+	"name": "web",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@repo/components": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"next": "16.0.8",
+		"react": "19.2.1",
+		"react-dom": "19.2.1"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@repo/tailwindcss": "workspace:*",
+		"@tailwindcss/postcss": "^4.1.17",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"babel-plugin-react-compiler": "1.0.0",
+		"typescript": "^5"
+	}
+}

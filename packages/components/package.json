@@ -1,0 +1,29 @@
+{
+	"name": "@repo/components",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		"./*": "./src/components/*.tsx",
+		"./hooks/*": "./src/hooks/*",
+		"./lib/*": "./src/lib/*"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe"
+	},
+	"dependencies": {
+		"@repo/tailwindcss": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"motion": "^12.23.25",
+		"next": "^16.0.8",
+		"react": "^19.2.1",
+		"react-dom": "^19.2.1",
+		"tailwind-merge": "^3.4.0"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3"
+	}
+}
