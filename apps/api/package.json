@@ -20,5 +20,9 @@
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
 		"@types/bun": "^1.3.4"
+	},
+	"peerDependencies": {
+		"@prisma/client": "^7.1.0",
+		"pg": "^8.16.3"
 	}
 }
