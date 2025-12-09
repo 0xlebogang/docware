@@ -13,3 +13,12 @@ export const SignUpSchema = UserInputSchema.pick({
 		path: ["confirmPassword"],
 	});
 export type SignUpInput = z.infer<typeof SignUpSchema>;
+
+export const SignInSchema = SignUpSchema.pick({
+	email: true,
+	password: true,
+}).refine(
+	(data) => data.email && data.password,
+	"Email and Password are required",
+);
+export type SignInInput = z.infer<typeof SignInSchema>;
