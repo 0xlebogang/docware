@@ -23,6 +23,7 @@
 		"@repo/biome": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
 		"@repo/tailwindcss": "workspace:*",
+		"@repo/ui": "workspace:*",
 		"@tailwindcss/postcss": "^4.1.17",
 		"@types/node": "^20",
 		"@types/react": "^19",

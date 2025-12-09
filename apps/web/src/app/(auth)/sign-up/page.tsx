@@ -7,6 +7,7 @@ import GoogleButton from "@repo/components/google-button";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
+import { toast } from "@repo/ui/components/sonner";
 import { Spinner } from "@repo/ui/components/spinner";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +32,7 @@ export default function SignUp() {
 	});
 
 	async function onSubmit(formData: SignUpInput) {
-		const { data, error } = await authClient.signUp.email({
+		const { error } = await authClient.signUp.email({
 			name: formData.name,
 			email: formData.email,
 			password: formData.password,
@@ -39,15 +40,15 @@ export default function SignUp() {
 
 		if (error) {
 			setError("root", {
-				message: error.message,
+				message:
+					error?.message ||
+					"An unexpected error occured! Please tray again later.",
 			});
-			alert(
-				error.message || "An unexpected error occured. Please try again later",
-			);
+
+			toast.error(errors.root?.message);
 			return;
 		}
 
-		alert(`User signed up successfully: ${data.user.name}`);
 		return redirect("/sign-in", RedirectType.replace);
 	}
 
