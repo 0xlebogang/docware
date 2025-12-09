@@ -4,6 +4,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 
 export const auth = betterAuth({
 	appName: "@repo/auth",
+	baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000",
 	trustedOrigins: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [
 		"http://localhost:3000",
 		"http://localhost:4321",

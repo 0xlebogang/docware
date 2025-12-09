@@ -13,7 +13,9 @@ export const { createApp, createHandlers, createMiddleware } = createFactory({
 
 		app.use(
 			cors({
-				origin: "*",
+				origin: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [
+					"http://localhost:3000",
+				],
 				allowMethods: process.env.CORS_ALLOWED_METHODS?.split(",") || [
 					"GET",
 					"POST",
@@ -24,5 +26,10 @@ export const { createApp, createHandlers, createMiddleware } = createFactory({
 				credentials: true,
 			}),
 		);
+
+		// Attach global health check endpoint
+		app.get("/health", (c) => {
+			return c.json({ status: "ok" });
+		});
 	},
 });

@@ -1,14 +1,62 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { authClient } from "@repo/auth/client";
 import { LogoIcon } from "@repo/components/components/logo";
 import GoogleButton from "@repo/components/google-button";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
+import { toast } from "@repo/ui/components/sonner";
+import { Spinner } from "@repo/ui/components/spinner";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { RedirectType, redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { type SignUpInput, SignUpSchema } from "@/lib/validation/auth";
 
 export default function SignUp() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+		setError,
+	} = useForm({
+		defaultValues: {
+			name: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+		},
+		resolver: zodResolver(SignUpSchema),
+	});
+
+	async function onSubmit(formData: SignUpInput) {
+		const { error } = await authClient.signUp.email({
+			name: formData.name,
+			email: formData.email,
+			password: formData.password,
+		});
+
+		if (error) {
+			setError("root", {
+				message:
+					error?.message ||
+					"An unexpected error occured! Please tray again later.",
+			});
+
+			toast.error(errors.root?.message);
+			return;
+		}
+
+		return redirect("/sign-in", RedirectType.replace);
+	}
+
 	return (
-		<form action="" className="max-w-92 m-auto h-fit w-full">
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="max-w-92 m-auto h-fit w-full"
+		>
 			<div className="p-6 h-[calc(100vh-66px)] flex flex-col justify-center">
 				<Button asChild variant="link" className="absolute top-6 left-6">
 					<Link href={process.env.NEXT_PUBLIC_SITE_URL || "#link"}>
@@ -40,36 +88,81 @@ export default function SignUp() {
 
 				<div className="space-y-6">
 					<div className="space-y-2">
-						<Label htmlFor="fullName" className="block text-sm">
-							Full Name
-						</Label>
-						<Input type="text" required name="fullName" id="fullName" />
+						<div className="flex justify-between w-full">
+							<Label htmlFor="name" className="block text-sm">
+								Full Name
+							</Label>
+							{errors.name && (
+								<span className="text-xs text-destructive">
+									{errors.name.message}
+								</span>
+							)}
+						</div>
+						<Input type="text" required {...register("name")} id="name" />
 					</div>
 					<div className="space-y-2">
-						<Label htmlFor="email" className="block text-sm">
-							Email
-						</Label>
-						<Input type="email" required name="email" id="email" />
+						<div className="flex justify-between w-full">
+							<Label htmlFor="email" className="block text-sm">
+								Email
+							</Label>
+							{errors.email && (
+								<span className="text-xs text-destructive">
+									{errors.email.message}
+								</span>
+							)}
+						</div>
+						<Input type="email" required {...register("email")} id="email" />
 					</div>
 					<div className="space-y-2">
-						<Label htmlFor="password" className="block text-sm">
-							Password
-						</Label>
-						<Input type="password" required name="password" id="password" />
-					</div>
-					<div className="space-y-2">
-						<Label htmlFor="confirmPassword" className="block text-sm">
-							Confirm password
-						</Label>
+						<div className="flex justify-between w-full">
+							<Label htmlFor="password" className="block text-sm">
+								Password
+							</Label>
+							{errors.password && (
+								<span className="text-xs text-destructive">
+									{errors.password.message}
+								</span>
+							)}
+						</div>
 						<Input
 							type="password"
 							required
-							name="confirmPassword"
+							{...register("password")}
+							id="password"
+						/>
+					</div>
+					<div className="space-y-2">
+						<div className="flex justify-between w-full">
+							<Label htmlFor="confirmPassword" className="block text-sm">
+								Confirm password
+							</Label>
+							{errors.confirmPassword && (
+								<span className="text-xs text-destructive">
+									{errors.confirmPassword.message}
+								</span>
+							)}
+						</div>
+						<Input
+							type="password"
+							required
+							{...register("confirmPassword")}
 							id="confirmPassword"
 						/>
 					</div>
 
-					<Button className="w-full">Continue</Button>
+					<Button
+						disabled={isSubmitting}
+						className="w-full flex justify-center items-center gap-2"
+					>
+						{isSubmitting ? (
+							<>
+								<Spinner />
+								<span>Loading...</span>
+							</>
+						) : (
+							"Continue"
+						)}
+					</Button>
 				</div>
 
 				<p className="text-accent-foreground text-center text-sm">

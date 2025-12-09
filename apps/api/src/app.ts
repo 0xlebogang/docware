@@ -1,8 +1,9 @@
 import { createApp } from "@repo/hono";
+import authRoute from "./routes/auth";
 
 const app = createApp();
 
-// Attach routes as needed
+app.route("", authRoute);
 
 const api = app.get("/ping", (c) => {
 	return c.json({ message: "pong" });
