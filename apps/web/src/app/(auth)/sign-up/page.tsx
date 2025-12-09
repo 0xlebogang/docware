@@ -6,7 +6,7 @@ import { Label } from "@repo/ui/components/label";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-export default function SignIn() {
+export default function SignUp() {
 	return (
 		<form action="" className="max-w-92 m-auto h-fit w-full">
 			<div className="p-6 h-[calc(100vh-66px)] flex flex-col justify-center">
@@ -21,9 +21,9 @@ export default function SignIn() {
 						<LogoIcon />
 					</Link>
 					<h1 className="mb-1 mt-4 text-xl font-semibold">
-						Sign In to Docware
+						Create a Docware Account
 					</h1>
-					<p>Welcome back! Sign in to continue</p>
+					<p>Welcome! Create an account to get started</p>
 				</div>
 
 				<div className="mt-6">
@@ -40,6 +40,12 @@ export default function SignIn() {
 
 				<div className="space-y-6">
 					<div className="space-y-2">
+						<Label htmlFor="fullName" className="block text-sm">
+							Full Name
+						</Label>
+						<Input type="text" required name="fullName" id="fullName" />
+					</div>
+					<div className="space-y-2">
 						<Label htmlFor="email" className="block text-sm">
 							Email
 						</Label>
@@ -51,14 +57,25 @@ export default function SignIn() {
 						</Label>
 						<Input type="password" required name="password" id="password" />
 					</div>
+					<div className="space-y-2">
+						<Label htmlFor="confirmPassword" className="block text-sm">
+							Confirm password
+						</Label>
+						<Input
+							type="password"
+							required
+							name="confirmPassword"
+							id="confirmPassword"
+						/>
+					</div>
 
 					<Button className="w-full">Continue</Button>
 				</div>
 
-				<p className="text-muted-foreground text-center text-sm mt-4">
-					Don't have an account ?
+				<p className="text-accent-foreground text-center text-sm">
+					Already have an account?
 					<Button asChild variant="link" className="px-2">
-						<Link href="/sign-up">Create one</Link>
+						<Link href="/sign-in">Sign In</Link>
 					</Button>
 				</p>
 			</div>
