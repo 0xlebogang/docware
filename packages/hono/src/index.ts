@@ -24,5 +24,10 @@ export const { createApp, createHandlers, createMiddleware } = createFactory({
 				credentials: true,
 			}),
 		);
+
+		// Attach global health check endpoint
+		app.get("/health", (c) => {
+			return c.json({ status: "ok" });
+		});
 	},
 });
