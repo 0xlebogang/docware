@@ -13,43 +13,51 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { type SignUpInput, SignUpSchema } from "@/lib/validation/auth";
+import { type SignInInput, SignInSchema } from "@/lib/validation/auth";
 
-export default function SignUp() {
+export default function SignIn() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitting },
 		setError,
+		formState: { errors, isSubmitting },
 	} = useForm({
 		defaultValues: {
-			name: "",
 			email: "",
 			password: "",
-			confirmPassword: "",
 		},
-		resolver: zodResolver(SignUpSchema),
+		mode: "onChange",
+		resetOptions: {
+			keepDefaultValues: true,
+		},
+		resolver: zodResolver(SignInSchema),
 	});
 
-	async function onSubmit(formData: SignUpInput) {
-		const { error } = await authClient.signUp.email({
-			name: formData.name,
-			email: formData.email,
-			password: formData.password,
+	if (errors.root?.message) {
+		toast.error(errors.root.message);
+	}
+
+	async function onSubmit(formData: SignInInput) {
+		const { data, error } = await authClient.signIn.email({
+			...formData,
 		});
 
 		if (error) {
 			setError("root", {
 				message:
-					error?.message ||
-					"An unexpected error occured! Please tray again later.",
+					error.message ||
+					"An unexpected error occured. Please try again later.",
 			});
 
 			toast.error(errors.root?.message);
 			return;
 		}
 
-		return redirect("/sign-in", RedirectType.replace);
+		toast.success(`Authenticated as ${data.user.email}`);
+		return redirect(
+			process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3000",
+			RedirectType.replace,
+		);
 	}
 
 	return (
@@ -69,9 +77,9 @@ export default function SignUp() {
 						<LogoIcon />
 					</Link>
 					<h1 className="mb-1 mt-4 text-xl font-semibold">
-						Create a Docware Account
+						Sign In to Docware
 					</h1>
-					<p>Welcome! Create an account to get started</p>
+					<p>Welcome back! Sign in to continue</p>
 				</div>
 
 				<div className="mt-6">
@@ -88,65 +96,20 @@ export default function SignUp() {
 
 				<div className="space-y-6">
 					<div className="space-y-2">
-						<div className="flex justify-between w-full">
-							<Label htmlFor="name" className="block text-sm">
-								Full Name
-							</Label>
-							{errors.name && (
-								<span className="text-xs text-destructive">
-									{errors.name.message}
-								</span>
-							)}
-						</div>
-						<Input type="text" required {...register("name")} id="name" />
-					</div>
-					<div className="space-y-2">
-						<div className="flex justify-between w-full">
-							<Label htmlFor="email" className="block text-sm">
-								Email
-							</Label>
-							{errors.email && (
-								<span className="text-xs text-destructive">
-									{errors.email.message}
-								</span>
-							)}
-						</div>
+						<Label htmlFor="email" className="block text-sm">
+							Email
+						</Label>
 						<Input type="email" required {...register("email")} id="email" />
 					</div>
 					<div className="space-y-2">
-						<div className="flex justify-between w-full">
-							<Label htmlFor="password" className="block text-sm">
-								Password
-							</Label>
-							{errors.password && (
-								<span className="text-xs text-destructive">
-									{errors.password.message}
-								</span>
-							)}
-						</div>
+						<Label htmlFor="password" className="block text-sm">
+							Password
+						</Label>
 						<Input
 							type="password"
 							required
 							{...register("password")}
 							id="password"
-						/>
-					</div>
-					<div className="space-y-2">
-						<div className="flex justify-between w-full">
-							<Label htmlFor="confirmPassword" className="block text-sm">
-								Confirm password
-							</Label>
-							{errors.confirmPassword && (
-								<span className="text-xs text-destructive">
-									{errors.confirmPassword.message}
-								</span>
-							)}
-						</div>
-						<Input
-							type="password"
-							required
-							{...register("confirmPassword")}
-							id="confirmPassword"
 						/>
 					</div>
 
@@ -165,10 +128,12 @@ export default function SignUp() {
 					</Button>
 				</div>
 
-				<p className="text-accent-foreground text-center text-sm">
-					Already have an account?
+				<p className="text-muted-foreground text-center text-sm mt-4">
+					Don't have an account ?
 					<Button asChild variant="link" className="px-2">
-						<Link href="/sign-in">Sign In</Link>
+						<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "/sign-up"}>
+							Create one
+						</Link>
 					</Button>
 				</p>
 			</div>

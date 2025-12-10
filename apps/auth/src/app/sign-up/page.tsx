@@ -2,8 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { authClient } from "@repo/auth/client";
-import { LogoIcon } from "@repo/components/components/logo";
 import GoogleButton from "@repo/components/google-button";
+import { LogoIcon } from "@repo/components/logo";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
@@ -13,49 +13,46 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { type SignInInput, SignInSchema } from "@/lib/validation/auth";
+import { type SignUpInput, SignUpSchema } from "@/lib/validation/auth";
 
-export default function SignIn() {
+export default function SignUp() {
 	const {
 		register,
 		handleSubmit,
-		setError,
 		formState: { errors, isSubmitting },
-		clearErrors,
+		setError,
 	} = useForm({
 		defaultValues: {
+			name: "",
 			email: "",
 			password: "",
+			confirmPassword: "",
 		},
-		mode: "onChange",
-		resetOptions: {
-			keepDefaultValues: true,
-		},
-		resolver: zodResolver(SignInSchema),
+		resolver: zodResolver(SignUpSchema),
 	});
 
-	if (errors.root?.message) {
-		toast.error(errors.root.message);
-	}
-
-	async function onSubmit(formData: SignInInput) {
-		const { data, error } = await authClient.signIn.email({
-			...formData,
+	async function onSubmit(formData: SignUpInput) {
+		const { error } = await authClient.signUp.email({
+			name: formData.name,
+			email: formData.email,
+			password: formData.password,
 		});
 
 		if (error) {
 			setError("root", {
 				message:
-					error.message ||
-					"An unexpected error occured. Please try again later.",
+					error?.message ||
+					"An unexpected error occured! Please tray again later.",
 			});
 
 			toast.error(errors.root?.message);
 			return;
 		}
 
-		toast.success(`Authenticated as ${data.user.email}`);
-		return redirect("/dashboard", RedirectType.replace);
+		return redirect(
+			process.env.NEXT_PUBLIC_SIGN_IN_URL || "/sign-in",
+			RedirectType.replace,
+		);
 	}
 
 	return (
@@ -75,9 +72,9 @@ export default function SignIn() {
 						<LogoIcon />
 					</Link>
 					<h1 className="mb-1 mt-4 text-xl font-semibold">
-						Sign In to Docware
+						Create a Docware Account
 					</h1>
-					<p>Welcome back! Sign in to continue</p>
+					<p>Welcome! Create an account to get started</p>
 				</div>
 
 				<div className="mt-6">
@@ -94,20 +91,65 @@ export default function SignIn() {
 
 				<div className="space-y-6">
 					<div className="space-y-2">
-						<Label htmlFor="email" className="block text-sm">
-							Email
-						</Label>
+						<div className="flex justify-between w-full">
+							<Label htmlFor="name" className="block text-sm">
+								Full Name
+							</Label>
+							{errors.name && (
+								<span className="text-xs text-destructive">
+									{errors.name.message}
+								</span>
+							)}
+						</div>
+						<Input type="text" required {...register("name")} id="name" />
+					</div>
+					<div className="space-y-2">
+						<div className="flex justify-between w-full">
+							<Label htmlFor="email" className="block text-sm">
+								Email
+							</Label>
+							{errors.email && (
+								<span className="text-xs text-destructive">
+									{errors.email.message}
+								</span>
+							)}
+						</div>
 						<Input type="email" required {...register("email")} id="email" />
 					</div>
 					<div className="space-y-2">
-						<Label htmlFor="password" className="block text-sm">
-							Password
-						</Label>
+						<div className="flex justify-between w-full">
+							<Label htmlFor="password" className="block text-sm">
+								Password
+							</Label>
+							{errors.password && (
+								<span className="text-xs text-destructive">
+									{errors.password.message}
+								</span>
+							)}
+						</div>
 						<Input
 							type="password"
 							required
 							{...register("password")}
 							id="password"
+						/>
+					</div>
+					<div className="space-y-2">
+						<div className="flex justify-between w-full">
+							<Label htmlFor="confirmPassword" className="block text-sm">
+								Confirm password
+							</Label>
+							{errors.confirmPassword && (
+								<span className="text-xs text-destructive">
+									{errors.confirmPassword.message}
+								</span>
+							)}
+						</div>
+						<Input
+							type="password"
+							required
+							{...register("confirmPassword")}
+							id="confirmPassword"
 						/>
 					</div>
 
@@ -126,10 +168,12 @@ export default function SignIn() {
 					</Button>
 				</div>
 
-				<p className="text-muted-foreground text-center text-sm mt-4">
-					Don't have an account ?
+				<p className="text-accent-foreground text-center text-sm">
+					Already have an account?
 					<Button asChild variant="link" className="px-2">
-						<Link href="/sign-up">Create one</Link>
+						<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "/sign-in"}>
+							Sign In
+						</Link>
 					</Button>
 				</p>
 			</div>
