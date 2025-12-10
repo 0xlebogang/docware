@@ -12,6 +12,7 @@
 		"lint:fix": "biome check --fix --unsafe"
 	},
 	"dependencies": {
+		"@repo/auth": "workspace:*",
 		"@repo/tailwindcss": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"motion": "^12.23.25",

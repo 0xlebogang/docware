@@ -1,12 +1,18 @@
-"use client";
-
-import Link from "next/link";
-import { Logo } from "./logo";
-import { Menu, X } from "lucide-react";
+import { useStore } from "@nanostores/react";
+import { Logo } from "@repo/components/logo";
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+} from "@repo/ui/components/avatar";
 import { Button } from "@repo/ui/components/button";
-import * as React from "react";
+import { toast } from "@repo/ui/components/sonner";
+import { Spinner } from "@repo/ui/components/spinner";
 import { cn } from "@repo/ui/lib/utils";
-import { useScroll } from "motion/react";
+import { AlertTriangle, Menu, X } from "lucide-react";
+import { useDeprecatedAnimatedState, useScroll } from "motion/react";
+import * as React from "react";
+import { useSession } from "@/lib/auth-client";
 
 interface MenuItem {
 	name: string;
@@ -62,13 +68,13 @@ export default function Navbar({
 				<div className="mx-auto max-w-7xl px-6 transition-all duration-300">
 					<div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
 						<div className="flex w-full items-center justify-between gap-12 lg:w-auto">
-							<Link
+							<a
 								href="/"
 								aria-label="home"
 								className="flex items-center space-x-2 font-semibold"
 							>
 								<Logo />
-							</Link>
+							</a>
 
 							<button
 								type="button"
@@ -82,14 +88,14 @@ export default function Navbar({
 
 							<div className="hidden lg:block">
 								<ul className="flex gap-8 text-sm">
-									{menuItems.map((item, index) => (
-										<li key={index}>
-											<Link
+									{menuItems.map((item, i) => (
+										<li key={`${item.name}-${i}`}>
+											<a
 												href={item.href}
 												className="text-muted-foreground hover:text-accent-foreground block duration-150"
 											>
 												<span>{item.name}</span>
-											</Link>
+											</a>
 										</li>
 									))}
 								</ul>
@@ -99,28 +105,28 @@ export default function Navbar({
 						<div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
 							<div className="lg:hidden">
 								<ul className="space-y-6 text-base">
-									{menuItems.map((item, index) => (
-										<li key={index}>
-											<Link
+									{menuItems.map((item, i) => (
+										<li key={`${item.name}-${i}`}>
+											<a
 												href={item.href}
 												className="text-muted-foreground hover:text-accent-foreground block duration-150"
 											>
 												<span>{item.name}</span>
-											</Link>
+											</a>
 										</li>
 									))}
 								</ul>
 							</div>
 							<div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
 								<Button asChild variant="ghost" size="sm">
-									<Link href={signInUrl}>
+									<a href={signInUrl}>
 										<span>Sign In</span>
-									</Link>
+									</a>
 								</Button>
 								<Button asChild size="sm">
-									<Link href={signUpUrl}>
+									<a href={signUpUrl}>
 										<span>Register</span>
-									</Link>
+									</a>
 								</Button>
 							</div>
 						</div>

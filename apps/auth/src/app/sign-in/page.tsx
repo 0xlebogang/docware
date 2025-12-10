@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@repo/auth/client";
 import { LogoIcon } from "@repo/components/components/logo";
 import GoogleButton from "@repo/components/google-button";
 import { Button } from "@repo/ui/components/button";
@@ -13,6 +12,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { client } from "@/lib/auth-client";
 import { type SignInInput, SignInSchema } from "@/lib/validation/auth";
 
 export default function SignIn() {
@@ -38,7 +38,7 @@ export default function SignIn() {
 	}
 
 	async function onSubmit(formData: SignInInput) {
-		const { data, error } = await authClient.signIn.email({
+		const { data, error } = await client.signIn.email({
 			...formData,
 		});
 
