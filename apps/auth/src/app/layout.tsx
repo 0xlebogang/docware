@@ -1,9 +1,7 @@
 import { DM_Mono, DM_Sans } from "next/font/google";
-import { headers } from "next/headers";
-import { RedirectType, redirect } from "next/navigation";
 import { ThemeProvider } from "next-themes";
-import { checkAuthStatus } from "@/lib/utils";
 import "@repo/tailwindcss/main.css";
+import { Toaster } from "@repo/ui/components/sonner";
 
 export const fontSans = DM_Sans({
 	subsets: ["latin"],
@@ -27,6 +25,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
 				className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
 			>
 				<ThemeProvider enableSystem defaultTheme="system" attribute="class">
+					<Toaster position="top-center" duration={5000} richColors />
 					<section className="flex min-h-screen bg-background px-4 dark:bg-transparent">
 						{children}
 					</section>
