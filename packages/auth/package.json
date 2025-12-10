@@ -4,7 +4,8 @@
 	"private": true,
 	"exports": {
 		"./server": "./src/server.ts",
-		"./client": "./src/client.ts"
+		"./client": "./src/client.ts",
+		"./utils": "./src/utils.ts"
 	},
 	"scripts": {
 		"generate-auth-schema": "better-auth generate -y --config ./src/server.ts --output ../database/prisma/schema/auth.prisma",

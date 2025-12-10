@@ -7,6 +7,7 @@ export const auth = betterAuth({
 	baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000",
 	trustedOrigins: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [
 		"http://localhost:3000",
+		"http://localhost:3001",
 		"http://localhost:4321",
 	],
 	advanced: {

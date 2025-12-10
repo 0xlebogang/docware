@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@repo/auth/client";
 import { LogoIcon } from "@repo/components/components/logo";
 import GoogleButton from "@repo/components/google-button";
 import { Button } from "@repo/ui/components/button";
@@ -13,6 +12,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { client } from "@/lib/auth-client";
 import { type SignInInput, SignInSchema } from "@/lib/validation/auth";
 
 export default function SignIn() {
@@ -21,7 +21,6 @@ export default function SignIn() {
 		handleSubmit,
 		setError,
 		formState: { errors, isSubmitting },
-		clearErrors,
 	} = useForm({
 		defaultValues: {
 			email: "",
@@ -39,7 +38,7 @@ export default function SignIn() {
 	}
 
 	async function onSubmit(formData: SignInInput) {
-		const { data, error } = await authClient.signIn.email({
+		const { data, error } = await client.signIn.email({
 			...formData,
 		});
 
@@ -55,7 +54,10 @@ export default function SignIn() {
 		}
 
 		toast.success(`Authenticated as ${data.user.email}`);
-		return redirect("/dashboard", RedirectType.replace);
+		return redirect(
+			process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:3000",
+			RedirectType.replace,
+		);
 	}
 
 	return (
@@ -129,7 +131,9 @@ export default function SignIn() {
 				<p className="text-muted-foreground text-center text-sm mt-4">
 					Don't have an account ?
 					<Button asChild variant="link" className="px-2">
-						<Link href="/sign-up">Create one</Link>
+						<Link href={process.env.NEXT_PUBLIC_SIGN_UP_URL || "/sign-up"}>
+							Create one
+						</Link>
 					</Button>
 				</p>
 			</div>

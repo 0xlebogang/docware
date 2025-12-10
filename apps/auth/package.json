@@ -1,5 +1,5 @@
 {
-	"name": "web",
+	"name": "auth",
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
@@ -23,8 +23,8 @@
 	"devDependencies": {
 		"@repo/auth": "workspace:*",
 		"@repo/biome": "workspace:*",
-		"@repo/tailwindcss": "workspace:*",
 		"@repo/tsconfig": "workspace:*",
+		"@repo/tailwindcss": "workspace:*",
 		"@repo/ui": "workspace:*",
 		"@tailwindcss/postcss": "^4.1.17",
 		"@types/node": "^20",

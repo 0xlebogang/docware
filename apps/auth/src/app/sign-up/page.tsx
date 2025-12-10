@@ -1,9 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { authClient } from "@repo/auth/client";
-import { LogoIcon } from "@repo/components/components/logo";
 import GoogleButton from "@repo/components/google-button";
+import { LogoIcon } from "@repo/components/logo";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
@@ -13,6 +12,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { client } from "@/lib/auth-client";
 import { type SignUpInput, SignUpSchema } from "@/lib/validation/auth";
 
 export default function SignUp() {
@@ -32,7 +32,7 @@ export default function SignUp() {
 	});
 
 	async function onSubmit(formData: SignUpInput) {
-		const { error } = await authClient.signUp.email({
+		const { error } = await client.signUp.email({
 			name: formData.name,
 			email: formData.email,
 			password: formData.password,
@@ -49,7 +49,10 @@ export default function SignUp() {
 			return;
 		}
 
-		return redirect("/sign-in", RedirectType.replace);
+		return redirect(
+			process.env.NEXT_PUBLIC_SIGN_IN_URL || "/sign-in",
+			RedirectType.replace,
+		);
 	}
 
 	return (
@@ -168,7 +171,9 @@ export default function SignUp() {
 				<p className="text-accent-foreground text-center text-sm">
 					Already have an account?
 					<Button asChild variant="link" className="px-2">
-						<Link href="/sign-in">Sign In</Link>
+						<Link href={process.env.NEXT_PUBLIC_SIGN_IN_URL || "/sign-in"}>
+							Sign In
+						</Link>
 					</Button>
 				</p>
 			</div>
