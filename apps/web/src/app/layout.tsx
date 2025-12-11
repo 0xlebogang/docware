@@ -1,9 +1,11 @@
 import { auth } from "@repo/auth/server";
 import Providers from "@/components/providers";
 import "@repo/tailwindcss/main.css";
+import { SidebarInset, SidebarProvider } from "@repo/ui/components/sidebar";
 import { Toaster } from "@repo/ui/components/sonner";
 import { headers } from "next/headers";
 import { RedirectType, redirect } from "next/navigation";
+import { AppSidebar } from "@/components/app-sidebar";
 
 export interface RootLayoutProps {
 	children: React.ReactNode;
@@ -26,7 +28,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 			<Providers>
 				<body>
 					<Toaster position="top-center" duration={5000} richColors />
-					{children}
+					<SidebarProvider>
+						<AppSidebar />
+						<SidebarInset>{children}</SidebarInset>
+					</SidebarProvider>
 				</body>
 			</Providers>
 		</html>
