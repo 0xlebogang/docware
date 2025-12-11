@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Avatar,
 	AvatarFallback,
@@ -18,6 +20,7 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@repo/ui/components/sidebar";
+import { toast } from "@repo/ui/components/sonner";
 import {
 	BadgeCheck,
 	Bell,
@@ -26,6 +29,8 @@ import {
 	LogOut,
 	Sparkles,
 } from "lucide-react";
+import { RedirectType, redirect } from "next/navigation";
+import { client } from "@/lib/auth-client";
 
 export function NavUser({
 	user,
@@ -37,6 +42,20 @@ export function NavUser({
 	};
 }) {
 	const { isMobile } = useSidebar();
+
+	async function handleLogout() {
+		const { error } = await client.signOut();
+		if (error) {
+			toast.error(error?.message || "Failed to log out. Please try again.");
+			return;
+		}
+
+		toast.success("Logged out successfully.");
+		redirect(
+			process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:4321",
+			RedirectType.replace,
+		);
+	}
 
 	return (
 		<SidebarMenu>
@@ -93,13 +112,9 @@ export function NavUser({
 								<CreditCard />
 								Billing
 							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Bell />
-								Notifications
-							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>
+						<DropdownMenuItem onClick={handleLogout}>
 							<LogOut />
 							Log out
 						</DropdownMenuItem>
