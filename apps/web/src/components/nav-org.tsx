@@ -18,7 +18,7 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@repo/ui/components/sidebar";
-import { ChevronsUpDown, Sparkles, User, Users } from "lucide-react";
+import { ChevronsUpDown, User, Users } from "lucide-react";
 
 export function NavOrg({
 	currentOrganization,
@@ -118,11 +118,6 @@ export function NavOrg({
 								</DropdownMenuGroup>
 							</>
 						)}
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<Sparkles />
-							Upgrade to Pro
-						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</SidebarMenuItem>
