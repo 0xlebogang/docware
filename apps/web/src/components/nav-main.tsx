@@ -8,14 +8,14 @@ import {
 import { Settings, Users } from "lucide-react";
 import Link from "next/link";
 
-export function NavMain() {
+export function NavManagement() {
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel>Platform</SidebarGroupLabel>
+			<SidebarGroupLabel>Management</SidebarGroupLabel>
 			<SidebarMenu>
 				<SidebarMenuItem>
 					<SidebarMenuButton asChild>
-						<Link href="#">
+						<Link href="#/members">
 							<Users />
 							<span>Members</span>
 						</Link>
@@ -23,7 +23,7 @@ export function NavMain() {
 				</SidebarMenuItem>
 				<SidebarMenuItem>
 					<SidebarMenuButton asChild>
-						<Link href="#">
+						<Link href="#/settings">
 							<Settings />
 							<span>Settings</span>
 						</Link>

@@ -1,6 +1,7 @@
 import { auth } from "@repo/auth/server";
 import Providers from "@/components/providers";
 import "@repo/tailwindcss/main.css";
+import { Dialog } from "@repo/ui/components/dialog";
 import { SidebarInset, SidebarProvider } from "@repo/ui/components/sidebar";
 import { Toaster } from "@repo/ui/components/sonner";
 import { headers } from "next/headers";
