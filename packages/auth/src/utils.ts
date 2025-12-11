@@ -7,3 +7,6 @@ export async function checkAuthStatus(headers: Headers) {
 
 	return !!session;
 }
+
+export type User = (typeof auth.$Infer.Session)["user"];
+export type Session = (typeof auth.$Infer.Session)["user"];
