@@ -9,10 +9,7 @@ import {
 import {
 	BookOpen,
 	Bot,
-	Frame,
 	LifeBuoy,
-	Map as MapIcon,
-	PieChart,
 	Send,
 	Settings2,
 	SquareTerminal,
@@ -157,17 +154,17 @@ const data = {
 		{
 			name: "Design Engineering",
 			url: "#",
-			icon: Frame,
+			avatar: "avatars/project-1.jpg",
 		},
 		{
 			name: "Sales & Marketing",
 			url: "#",
-			icon: PieChart,
+			avatar: "avatars/project-2.jpg",
 		},
 		{
 			name: "Travel",
 			url: "#",
-			icon: MapIcon,
+			avatar: "avatars/project-3.jpg",
 		},
 	],
 };
@@ -182,7 +179,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				/>
 			</SidebarHeader>
 			<SidebarContent>
-				<NavMain items={data.navMain} />
+				<NavMain />
 				<NavProjects projects={data.projects} />
 				<NavSecondary items={data.navSecondary} className="mt-auto" />
 			</SidebarContent>
