@@ -1,13 +1,12 @@
-import { createApp } from "@repo/hono";
+import { factory } from "@repo/hono/factory";
 import authRoute from "./routes/auth";
+import orgRoutes from "./routes/orgs";
 
-const app = createApp();
+const app = factory.createApp();
 
 app.route("", authRoute);
 
-const api = app.get("/ping", (c) => {
-	return c.json({ message: "pong" });
-});
+const api = app.route("/v1", orgRoutes);
 
 export default api;
 export type AppType = typeof api;
