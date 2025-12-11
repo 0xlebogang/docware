@@ -1,6 +1,11 @@
 "use client";
 
 import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+} from "@repo/ui/components/avatar";
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
@@ -16,13 +21,7 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@repo/ui/components/sidebar";
-import {
-	Folder,
-	type LucideIcon,
-	MoreHorizontal,
-	Share,
-	Trash2,
-} from "lucide-react";
+import { Folder, MoreHorizontal, Trash2 } from "lucide-react";
 
 export function NavProjects({
 	projects,
@@ -30,7 +29,7 @@ export function NavProjects({
 	projects: {
 		name: string;
 		url: string;
-		icon: LucideIcon;
+		avatar: string;
 	}[];
 }) {
 	const { isMobile } = useSidebar();
@@ -43,7 +42,10 @@ export function NavProjects({
 					<SidebarMenuItem key={item.name}>
 						<SidebarMenuButton asChild>
 							<a href={item.url}>
-								<item.icon />
+								<Avatar className="h-6 w-6 rounded-lg">
+									<AvatarImage src={item.avatar} alt={item.name} />
+									<AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
+								</Avatar>
 								<span>{item.name}</span>
 							</a>
 						</SidebarMenuButton>
@@ -62,10 +64,6 @@ export function NavProjects({
 								<DropdownMenuItem>
 									<Folder className="text-muted-foreground" />
 									<span>View Project</span>
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<Share className="text-muted-foreground" />
-									<span>Share Project</span>
 								</DropdownMenuItem>
 								<DropdownMenuSeparator />
 								<DropdownMenuItem>
