@@ -5,6 +5,7 @@
     "": {
       "name": "google-ai-hackathon",
       "dependencies": {
+        "@types/bun": "^1.3.4",
         "lucide-react": "^0.556.0",
       },
       "devDependencies": {
