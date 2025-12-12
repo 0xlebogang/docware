@@ -54,8 +54,11 @@ We use [mise](https://mise.jdx.dev) to manage the project's tooling. You can eit
 
 Ensure you have the following tools installed on your system:
 
-- [Node.js](https://nodejs.org/en/download/) (v18+) - Optional but recommended
-- [Bun](https://bun.sh/docs/installation) (v1.2+)
+- [Node.js](https://nodejs.org/en/download/) (v20.9+) - Optional but recommended
+
+	> Some of Turborepo's functionality requires a node environment to be available
+
+- [Bun](https://bun.sh/docs/installation) (v1.3+)
 - [Turborepo](https://turborepo.com/docs) (v2.6+)
 - [Go](https://go.dev/doc/install) (v1.24.4+)
 - [Golangci-lint](https://golangci-lint.run/docs/welcome/install/local/)
