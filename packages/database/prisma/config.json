@@ -3,9 +3,14 @@
 	"output": "../src/generated/zod",
 	"variants": {
 		"input": {
-			"enabled": true,
 			"strictMode": true,
-			"excludeFields": ["id", "createdAt", "updatedAt"]
+			"excludeFields": ["id", "owner", "ownerId", "createdAt", "updatedAt"]
+		},
+		"pure": {
+			"excludeFields": ["owner"]
+		},
+		"result": {
+			"excludeFields": ["owner"]
 		}
 	},
 	"naming": {

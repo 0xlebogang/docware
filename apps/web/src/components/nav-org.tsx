@@ -18,7 +18,8 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@repo/ui/components/sidebar";
-import { ChevronsUpDown, User, Users } from "lucide-react";
+import { ChevronsUpDown, PlusCircle, User, Users } from "lucide-react";
+import Link from "next/link";
 
 export function NavOrg({
 	currentOrganization,
@@ -118,6 +119,14 @@ export function NavOrg({
 								</DropdownMenuGroup>
 							</>
 						)}
+
+						<DropdownMenuSeparator />
+						<DropdownMenuItem asChild>
+							<Link href="/organizations/new">
+								<PlusCircle className="size-4" />
+								<span>Add Organization</span>
+							</Link>
+						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</SidebarMenuItem>

@@ -1,7 +1,21 @@
 import { auth } from "@repo/auth/server";
 import Providers from "@/components/providers";
 import "@repo/tailwindcss/main.css";
-import { SidebarInset, SidebarProvider } from "@repo/ui/components/sidebar";
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@repo/ui/components/breadcrumb";
+import { Dialog } from "@repo/ui/components/dialog";
+import { Separator } from "@repo/ui/components/separator";
+import {
+	SidebarInset,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@repo/ui/components/sidebar";
 import { Toaster } from "@repo/ui/components/sonner";
 import { headers } from "next/headers";
 import { RedirectType, redirect } from "next/navigation";
@@ -30,7 +44,21 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 					<Toaster position="top-center" duration={5000} richColors />
 					<SidebarProvider>
 						<AppSidebar />
-						<SidebarInset>{children}</SidebarInset>
+						<SidebarInset>
+							<header className="flex h-16 shrink-0 items-center gap-2">
+								<div className="flex items-center gap-2 px-4">
+									<SidebarTrigger className="-ml-1" />
+									<Separator
+										orientation="vertical"
+										className="mr-2 data-[orientation=vertical]:h-4"
+									/>
+									<h1 className="font-bold">Dashboard</h1>
+								</div>
+							</header>
+							<div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+								{children}
+							</div>
+						</SidebarInset>
 					</SidebarProvider>
 				</body>
 			</Providers>

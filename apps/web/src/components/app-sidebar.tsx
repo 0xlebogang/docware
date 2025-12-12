@@ -15,7 +15,7 @@ import {
 	SquareTerminal,
 } from "lucide-react";
 import type * as React from "react";
-import { NavMain } from "@/components/nav-main";
+import { NavManagement } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
@@ -179,8 +179,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				/>
 			</SidebarHeader>
 			<SidebarContent>
-				<NavMain />
 				<NavProjects projects={data.projects} />
+				<NavManagement />
 				<NavSecondary items={data.navSecondary} className="mt-auto" />
 			</SidebarContent>
 			<SidebarFooter>
