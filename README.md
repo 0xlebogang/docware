@@ -61,7 +61,7 @@ Ensure you have the following tools installed on your system:
 - [Bun](https://bun.sh/docs/installation) (v1.3+)
 - [Turborepo](https://turborepo.com/docs) (v2.6+)
 - [Go](https://go.dev/doc/install) (v1.24.4+)
-- [Golangci-lint](https://golangci-lint.run/docs/welcome/install/local/)
+- [Golangci-lint](https://golangci-lint.run/docs/welcome/install/local/) (latest stable version)
 - [Docker & Docker Compose](https://docs.docker.com/get-docker/) (latest stable versions)
 
 ### Running the project
@@ -100,15 +100,13 @@ Ensure you have the following tools installed on your system:
 
 4. Setup environment variables:
 
-	 Each service will have its own `.env.example` file located in its respective root directory (same location as the package's `package.json`). Copy these files to create `.env` files and populate their values as needed.
-
-	 [View setup script](./scripts/setup.ts)
+	 Each service has its own `.env.example` file located in its respective root directory (same location as the package's `package.json`). Copy these files to create `.env` files and populate their values as needed. You can use the [setup script](./scripts/setup.ts) by running this command.
 
 	 ```bash
 	 bun scripts/setup.ts
 	 ```
 
-	 > Most of the values are already set to defaults that should work right away unless you've had to modify any of service environments (e.g. changed port numbers or database credentials, etc...)
+	 > Most of the values are already set to defaults that should work right away unless you've had to modify any of the services' environments (e.g. changed port numbers or database credentials, etc...)
 
 5. Start the development server:
 
@@ -116,7 +114,7 @@ Ensure you have the following tools installed on your system:
 	 bun run dev
 	 ```
 
-	 This will use Turbo to run all tasks required for the development servers of all services and the servers themselves. Refer to the [contributing guidline](./CONTRIBUTING.md) to read about this in detail.
+	 This will use Turborepo to run all tasks and development servers. Refer to the [contributing guidline](./CONTRIBUTING.md) to read about this in detail.
 
 7. Access the applications:
 
@@ -126,6 +124,9 @@ Ensure you have the following tools installed on your system:
 	 | API | [`http://localhost:5000`](http://localhost:5000) |
 	 | App | [`http:localhost:3000`](http://localhost:3000) |
 	 | Auth App | [`http://localhost:3001`](http://localhost:3001) |
+	 | Database server | `postgres://root@localhost:5432/postgres?schema=public`
+
+	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 
 ### Contributing
 
