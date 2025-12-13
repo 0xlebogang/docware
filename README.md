@@ -108,13 +108,27 @@ Ensure you have the following tools installed on your system:
 
 	 > Most of the values are already set to defaults that should work right away unless you've had to modify any of the services' environments (e.g. changed port numbers or database credentials, etc...)
 
+5. Start the external services required to run docware.
+
+	 ```bash
+	 bun services:up
+	 ```
+
+	 This uses docker compose to start a PostgreSQL database.
+
+6. Migrate the database.
+
+	 ```bash
+	 turbo db:push
+	 ```
+
 5. Start the development server:
 
 	 ```bash
 	 bun run dev
 	 ```
 
-	 This will use Turborepo to run all tasks and development servers. Refer to the [contributing guidline](./CONTRIBUTING.md) to read about this in detail.
+	 This will use Turborepo to run all development servers. Refer to the [contributing guidline](./CONTRIBUTING.md) to read about this in detail.
 
 7. Access the applications:
 
@@ -124,7 +138,7 @@ Ensure you have the following tools installed on your system:
 	 | API | [`http://localhost:5000`](http://localhost:5000) |
 	 | App | [`http:localhost:3000`](http://localhost:3000) |
 	 | Auth App | [`http://localhost:3001`](http://localhost:3001) |
-	 | Database server | `postgres://root@localhost:5432/postgres?schema=public`
+	 | Database server | `postgres://root@localhost:5432/postgres?schema=public` |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 
