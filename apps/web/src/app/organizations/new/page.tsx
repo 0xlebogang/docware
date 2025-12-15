@@ -2,19 +2,14 @@ import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
 import { Textarea } from "@repo/ui/components/textarea";
-import { Building, ChevronLeft, Link } from "lucide-react";
+import { Building } from "lucide-react";
+import Link from "next/link";
 
 export default function NewOrganization() {
 	return (
 		<section className="flex min-h-screen bg-background px-4 dark:bg-transparent">
 			<form className="max-w-92 m-auto h-fit w-full">
 				<div className="p-6 h-[calc(100vh-66px)] flex flex-col justify-center">
-					<Button asChild variant="link" className="absolute top-6 left-6">
-						<Link href={process.env.NEXT_PUBLIC_SITE_URL || "#link"}>
-							<ChevronLeft />
-							<span>Back to Home</span>
-						</Link>
-					</Button>
 					<div className="mb-8">
 						<Building />
 						<h1 className="mb-1 mt-4 text-xl font-semibold">
@@ -49,6 +44,13 @@ export default function NewOrganization() {
 							Continue
 						</Button>
 					</div>
+					<Button
+						asChild
+						variant="link"
+						className="text-muted-foreground text-center text-sm mt-4"
+					>
+						<Link href="/">Back to dashboard</Link>
+					</Button>
 				</div>
 			</form>
 		</section>
