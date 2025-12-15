@@ -8,7 +8,7 @@ import { Label } from "@repo/ui/components/label";
 import { toast } from "@repo/ui/components/sonner";
 import { Spinner } from "@repo/ui/components/spinner";
 import { Textarea } from "@repo/ui/components/textarea";
-import { Building } from "lucide-react";
+import { Building, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -35,7 +35,7 @@ export default function NewOrganization() {
 	});
 
 	return (
-		<section className="flex min-h-screen bg-background px-4 dark:bg-transparent">
+		<section className="flex bg-background px-4 dark:bg-transparent">
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className="max-w-92 m-auto h-fit w-full"
@@ -100,7 +100,10 @@ export default function NewOrganization() {
 						variant="link"
 						className="text-muted-foreground text-center text-sm mt-4"
 					>
-						<Link href="/">Back to dashboard</Link>
+						<Link href="/">
+							<ChevronLeft className="h-4 w-4" />
+							Back to dashboard
+						</Link>
 					</Button>
 				</div>
 			</form>
