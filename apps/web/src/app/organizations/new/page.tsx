@@ -1,14 +1,45 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { OrganizationInputSchema } from "@repo/database/validation";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
+import { toast } from "@repo/ui/components/sonner";
+import { Spinner } from "@repo/ui/components/spinner";
 import { Textarea } from "@repo/ui/components/textarea";
 import { Building } from "lucide-react";
 import Link from "next/link";
+import { RedirectType, redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
+import { api } from "@/lib/api-client";
+
+export type OrganizationInput = z.infer<typeof OrganizationInputSchema>;
 
 export default function NewOrganization() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+	} = useForm({
+		defaultValues: {
+			name: "",
+			description: "",
+		} as OrganizationInput,
+		resolver: zodResolver(OrganizationInputSchema),
+		mode: "onBlur",
+		resetOptions: {
+			keepIsValid: true,
+		},
+	});
+
 	return (
 		<section className="flex min-h-screen bg-background px-4 dark:bg-transparent">
-			<form className="max-w-92 m-auto h-fit w-full">
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className="max-w-92 m-auto h-fit w-full"
+			>
 				<div className="p-6 h-[calc(100vh-66px)] flex flex-col justify-center">
 					<div className="mb-8">
 						<Building />
@@ -24,24 +55,44 @@ export default function NewOrganization() {
 								<Label htmlFor="name" className="block text-sm">
 									Name
 								</Label>
+								{errors.name && (
+									<p className="text-sm text-red-600">
+										{errors.name.message?.toString()}
+									</p>
+								)}
 							</div>
-							<Input type="text" required name="name" id="name" />
+							<Input type="text" required {...register("name")} id="name" />
 						</div>
 						<div className="space-y-2">
 							<div className="flex justify-between w-full">
 								<Label htmlFor="description" className="block text-sm">
 									Description
 								</Label>
+								{errors.description && (
+									<p className="text-sm text-red-600">
+										{errors.description.message?.toString()}
+									</p>
+								)}
 							</div>
 							<Textarea
 								placeholder="A description for your new organization..."
-								name="description"
+								{...register("description")}
 								id="description"
 							/>
 						</div>
 
-						<Button className="w-full flex justify-center items-center gap-2">
-							Continue
+						<Button
+							disabled={isSubmitting}
+							className="w-full flex justify-center items-center gap-2"
+						>
+							{isSubmitting ? (
+								<>
+									<Spinner />
+									<span>Loading...</span>
+								</>
+							) : (
+								"Continue"
+							)}
 						</Button>
 					</div>
 					<Button
@@ -55,4 +106,20 @@ export default function NewOrganization() {
 			</form>
 		</section>
 	);
+}
+
+async function onSubmit(data: OrganizationInput) {
+	const res = await api.orgs.create.$post({
+		json: {
+			...data,
+		},
+	});
+
+	if (res.status !== 201) {
+		toast.error("Failed to create organization. Please try again.");
+		return;
+	}
+
+	toast.success("Organization created successfully!");
+	redirect("/organizations", RedirectType.push);
 }
