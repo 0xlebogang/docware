@@ -1,14 +1,11 @@
 "use client";
 
-import type { Organization } from "@repo/database/types";
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarHeader,
 } from "@repo/ui/components/sidebar";
-import { Skeleton } from "@repo/ui/components/skeleton";
-import { toast } from "@repo/ui/components/sonner";
 import {
 	BookOpen,
 	Bot,
@@ -22,7 +19,6 @@ import { NavManagement } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
-import { useOrganizations } from "@/hooks/use-organizations";
 import { NavOrg } from "./nav-org";
 
 const data = {
@@ -174,17 +170,10 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-	const { organizations, isLoading, error } = useOrganizations();
-
-	if (error) {
-		toast.error(error);
-	}
-
 	return (
 		<Sidebar variant="inset" {...props}>
 			<SidebarHeader>
-				{isLoading && <Skeleton className="h-8 w-32" />}
-				<NavOrg organizations={organizations} />
+				<NavOrg />
 			</SidebarHeader>
 			<SidebarContent>
 				<NavProjects projects={data.projects} />
