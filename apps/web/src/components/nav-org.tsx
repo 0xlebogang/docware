@@ -30,20 +30,20 @@ import { useOrganizationStore } from "@/stores/organizations-store";
 export function NavOrg() {
 	const { isMobile } = useSidebar();
 	const {
+		activeOrganization,
 		organizations,
 		isLoading,
 		fetchAndInitializeOrganizations,
-		activeOrganization,
 		setActiveOrganization,
 	} = useOrganizationStore();
 
 	React.useEffect(() => {
-		if (!organizations) {
-			fetchAndInitializeOrganizations().catch(() => {
-				toast.error("Failed to load organizations");
-			});
-		}
-	}, [fetchAndInitializeOrganizations, organizations]);
+		fetchAndInitializeOrganizations().catch((_) =>
+			toast.error("Error fetching organizations"),
+		);
+	}, [fetchAndInitializeOrganizations]);
+
+	const orgs = organizations.filter((org) => org.id !== activeOrganization?.id);
 
 	return (
 		<SidebarMenu>
@@ -103,14 +103,14 @@ export function NavOrg() {
 								</div>
 							</div>
 						</DropdownMenuItem>
-						{organizations && (
+						{orgs.length > 0 && (
 							<>
 								<DropdownMenuSeparator />
 								<DropdownMenuGroup>
-									{organizations.map((org, i) => (
+									{orgs.map((org, i) => (
 										<DropdownMenuItem
 											key={`${org.name}-${i}`}
-											onClick={() => setActiveOrganization(org.id)}
+											onClick={() => setActiveOrganization(org)}
 										>
 											<Avatar className="h-5 w-5 rounded-lg">
 												<AvatarImage

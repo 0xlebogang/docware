@@ -4,7 +4,14 @@
 	"variants": {
 		"input": {
 			"strictMode": true,
-			"excludeFields": ["id", "owner", "ownerId", "createdAt", "updatedAt"]
+			"excludeFields": [
+				"id",
+				"owner",
+				"ownerId",
+				"members",
+				"createdAt",
+				"updatedAt"
+			]
 		},
 		"pure": {
 			"excludeFields": ["owner"]

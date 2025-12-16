@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { Organization, OrganizationInput } from "@repo/database/types";
 import { OrganizationInputSchema } from "@repo/database/validation";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
@@ -12,12 +13,11 @@ import { Building, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
-import type { z } from "zod";
 import { api } from "@/lib/api-client";
-
-export type OrganizationInput = z.infer<typeof OrganizationInputSchema>;
+import { useOrganizationStore } from "@/stores/organizations-store";
 
 export default function NewOrganization() {
+	const { addOrganization } = useOrganizationStore();
 	const {
 		register,
 		handleSubmit,
@@ -33,6 +33,29 @@ export default function NewOrganization() {
 			keepIsValid: true,
 		},
 	});
+
+	async function onSubmit(data: OrganizationInput) {
+		const res = await api.orgs.create.$post({
+			json: {
+				...data,
+			},
+		});
+
+		if (res.status !== 201) {
+			toast.error("Failed to create organization. Please try again.");
+			return;
+		}
+
+		if (errors.root) {
+			toast.error(`Error: ${errors.root?.message}`);
+		}
+
+		const { data: newOrg }: { data: Organization } = await res.json();
+		addOrganization(newOrg);
+
+		toast.success("Organization created successfully!");
+		return redirect("/", RedirectType.push);
+	}
 
 	return (
 		<section className="flex bg-background px-4 dark:bg-transparent">
@@ -82,6 +105,7 @@ export default function NewOrganization() {
 						</div>
 
 						<Button
+							type="submit"
 							disabled={isSubmitting}
 							className="w-full flex justify-center items-center gap-2"
 						>
@@ -109,20 +133,4 @@ export default function NewOrganization() {
 			</form>
 		</section>
 	);
-}
-
-async function onSubmit(data: OrganizationInput) {
-	const res = await api.orgs.create.$post({
-		json: {
-			...data,
-		},
-	});
-
-	if (res.status !== 201) {
-		toast.error("Failed to create organization. Please try again.");
-		return;
-	}
-
-	toast.success("Organization created successfully!");
-	redirect("/organizations", RedirectType.push);
 }

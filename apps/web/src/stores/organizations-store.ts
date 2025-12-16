@@ -7,7 +7,8 @@ export type OrganizationsState = {
 	activeOrganization: Organization | null;
 	organizations: Organization[];
 	isLoading: boolean;
-	setActiveOrganization: (orgId: string) => void;
+	setActiveOrganization: (org: Organization) => void;
+	addOrganization: (org: Organization) => void;
 	fetchAndInitializeOrganizations: () => Promise<void>;
 };
 
@@ -16,12 +17,16 @@ export const useOrganizationStore = create<OrganizationsState>((set) => ({
 	organizations: [],
 	isLoading: false,
 
-	setActiveOrganization: (orgId: string) => {
-		set((state) => {
-			const organization =
-				state.organizations.find((org) => org.id === orgId) || null;
-			return { activeOrganization: organization };
+	setActiveOrganization: (org: Organization) => {
+		set(() => {
+			return { activeOrganization: org };
 		});
+	},
+
+	addOrganization: (org: Organization) => {
+		set((state) => ({
+			organizations: [...state.organizations, org],
+		}));
 	},
 
 	fetchAndInitializeOrganizations: async () => {
