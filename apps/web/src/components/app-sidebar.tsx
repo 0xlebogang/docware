@@ -173,10 +173,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	return (
 		<Sidebar variant="inset" {...props}>
 			<SidebarHeader>
-				<NavOrg
-					currentOrganization={data.currentOrg}
-					organizations={data.organizations}
-				/>
+				<NavOrg />
 			</SidebarHeader>
 			<SidebarContent>
 				<NavProjects projects={data.projects} />

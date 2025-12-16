@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Avatar,
 	AvatarFallback,
@@ -18,56 +20,61 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@repo/ui/components/sidebar";
-import { ChevronsUpDown, PlusCircle, User, Users } from "lucide-react";
+import { Skeleton } from "@repo/ui/components/skeleton";
+import { toast } from "@repo/ui/components/sonner";
+import { ChevronsUpDown, Folder, PlusCircle, Users } from "lucide-react";
 import Link from "next/link";
+import * as React from "react";
+import { useOrganizationStore } from "@/stores/organizations-store";
 
-export function NavOrg({
-	currentOrganization,
-	organizations,
-}: {
-	currentOrganization: {
-		name: string;
-		description: string;
-		tier: string;
-		members?: number;
-		avatar: string;
-	};
-	organizations?: {
-		name: string;
-		tier: string;
-		avatar: string;
-	}[];
-}) {
+export function NavOrg() {
 	const { isMobile } = useSidebar();
+	const {
+		activeOrganization,
+		organizations,
+		isLoading,
+		fetchAndInitializeOrganizations,
+		setActiveOrganization,
+	} = useOrganizationStore();
+
+	React.useEffect(() => {
+		fetchAndInitializeOrganizations().catch((_) =>
+			toast.error("Error fetching organizations"),
+		);
+	}, [fetchAndInitializeOrganizations]);
+
+	const orgs = organizations.filter((org) => org.id !== activeOrganization?.id);
 
 	return (
 		<SidebarMenu>
 			<SidebarMenuItem>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<SidebarMenuButton
-							size="lg"
-							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-						>
-							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage
-									src={currentOrganization.avatar}
-									alt={currentOrganization.name}
-								/>
-								<AvatarFallback className="rounded-lg bg-accent">
-									{currentOrganization.name.charAt(0).toUpperCase()}
-								</AvatarFallback>
-							</Avatar>
-							<div className="grid flex-1 text-left text-sm leading-tight">
-								<span className="truncate font-medium">
-									{currentOrganization.name}
-								</span>
-								<span className="truncate text-xs">
-									{currentOrganization.tier}
-								</span>
-							</div>
-							<ChevronsUpDown className="ml-auto size-4" />
-						</SidebarMenuButton>
+						{isLoading ? (
+							<SidebarMenuButton size="lg" asChild>
+								<Skeleton className="w-full h-16" />
+							</SidebarMenuButton>
+						) : (
+							<SidebarMenuButton
+								size="lg"
+								className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+							>
+								<Avatar className="h-8 w-8 rounded-lg">
+									<AvatarFallback className="rounded-lg bg-accent">
+										{activeOrganization?.name.charAt(0).toUpperCase()}
+									</AvatarFallback>
+								</Avatar>
+								<div className="grid flex-1 text-left text-sm leading-tight">
+									<span className="truncate font-medium">
+										{activeOrganization?.name}
+									</span>
+									<span className="truncate text-muted-foreground text-xs">
+										{activeOrganization?.description}
+									</span>
+								</div>
+								<ChevronsUpDown className="ml-auto size-4" />
+							</SidebarMenuButton>
+						)}
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
@@ -77,15 +84,10 @@ export function NavOrg({
 					>
 						<DropdownMenuLabel className="p-0 font-normal">
 							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-								<Avatar className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center p-2">
-									<User />
-								</Avatar>
+								<Folder className="h-5" />
 								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-bold">
-										{currentOrganization.tier} Plan
-									</span>
-									<span className="truncate text-xs">
-										{currentOrganization.description}
+									<span className="truncate text-muted-foreground text-xs">
+										{activeOrganization?.members.length} Projects
 									</span>
 								</div>
 							</div>
@@ -96,19 +98,25 @@ export function NavOrg({
 								<Users className="h-5" />
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate text-xs">
-										{currentOrganization.members} Members
+										{activeOrganization?.members.length} Members
 									</span>
 								</div>
 							</div>
 						</DropdownMenuItem>
-						{organizations && (
+						{orgs.length > 0 && (
 							<>
 								<DropdownMenuSeparator />
 								<DropdownMenuGroup>
-									{organizations.map((org, i) => (
-										<DropdownMenuItem key={`${org.name}-${i}`}>
-											<Avatar className="h-5 w-5">
-												<AvatarImage src={org.avatar} alt={org.name} />
+									{orgs.map((org, i) => (
+										<DropdownMenuItem
+											key={`${org.name}-${i}`}
+											onClick={() => setActiveOrganization(org)}
+										>
+											<Avatar className="h-5 w-5 rounded-lg">
+												<AvatarImage
+													src={org.avatar || undefined}
+													alt={org.name}
+												/>
 												<AvatarFallback className="rounded-lg bg-accent">
 													{org.name.charAt(0).toUpperCase()}
 												</AvatarFallback>
