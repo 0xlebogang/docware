@@ -1,3 +1,4 @@
+import type { Organization } from "@repo/database/types";
 import {
 	Avatar,
 	AvatarFallback,
@@ -21,24 +22,14 @@ import {
 import { ChevronsUpDown, PlusCircle, User, Users } from "lucide-react";
 import Link from "next/link";
 
-export function NavOrg({
-	currentOrganization,
-	organizations,
-}: {
-	currentOrganization: {
-		name: string;
-		description: string;
-		tier: string;
-		members?: number;
-		avatar: string;
-	};
-	organizations?: {
-		name: string;
-		tier: string;
-		avatar: string;
-	}[];
-}) {
+export function NavOrg({ organizations }: { organizations?: Organization[] }) {
 	const { isMobile } = useSidebar();
+
+	const activeOrganization = {
+		name: "Acme Inc",
+		description: "For enterprise teams",
+		members: Array(42).fill(null),
+	};
 
 	return (
 		<SidebarMenu>
@@ -50,21 +41,15 @@ export function NavOrg({
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
 							<Avatar className="h-8 w-8 rounded-lg">
-								<AvatarImage
-									src={currentOrganization.avatar}
-									alt={currentOrganization.name}
-								/>
 								<AvatarFallback className="rounded-lg bg-accent">
-									{currentOrganization.name.charAt(0).toUpperCase()}
+									{activeOrganization.name.charAt(0).toUpperCase()}
 								</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-medium">
-									{currentOrganization.name}
+									{activeOrganization.name}
 								</span>
-								<span className="truncate text-xs">
-									{currentOrganization.tier}
-								</span>
+								<span className="truncate text-xs">Enterprise Plan</span>
 							</div>
 							<ChevronsUpDown className="ml-auto size-4" />
 						</SidebarMenuButton>
@@ -81,11 +66,9 @@ export function NavOrg({
 									<User />
 								</Avatar>
 								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-bold">
-										{currentOrganization.tier} Plan
-									</span>
+									<span className="truncate font-bold">Enterprise Plan</span>
 									<span className="truncate text-xs">
-										{currentOrganization.description}
+										{activeOrganization.description}
 									</span>
 								</div>
 							</div>
@@ -96,7 +79,7 @@ export function NavOrg({
 								<Users className="h-5" />
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate text-xs">
-										{currentOrganization.members} Members
+										{activeOrganization.members.length} Members
 									</span>
 								</div>
 							</div>
@@ -107,8 +90,11 @@ export function NavOrg({
 								<DropdownMenuGroup>
 									{organizations.map((org, i) => (
 										<DropdownMenuItem key={`${org.name}-${i}`}>
-											<Avatar className="h-5 w-5">
-												<AvatarImage src={org.avatar} alt={org.name} />
+											<Avatar className="h-5 w-5 rounded-lg">
+												<AvatarImage
+													src={org.avatar || undefined}
+													alt={org.name}
+												/>
 												<AvatarFallback className="rounded-lg bg-accent">
 													{org.name.charAt(0).toUpperCase()}
 												</AvatarFallback>
