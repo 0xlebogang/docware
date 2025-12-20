@@ -27,12 +27,24 @@ export class MinioStorageProvider extends BaseStorageProvider {
 		return await this.client.listBuckets();
 	}
 
-	async createFolder(folderName: string): Promise<void> {
-		await this.client.makeBucket(folderName);
+	async createFolder(folderName: string): Promise<boolean> {
+		try {
+			await this.client.makeBucket(folderName);
+			return true;
+		} catch (error) {
+			console.error("Error creating folder:", error);
+			return false;
+		}
 	}
 
-	async deleteFolder(folderName: string): Promise<void> {
-		await this.client.removeBucket(folderName);
+	async deleteFolder(folderName: string): Promise<boolean> {
+		try {
+			await this.client.removeBucket(folderName);
+			return true;
+		} catch (error) {
+			console.error("Error deleting folder:", error);
+			return false;
+		}
 	}
 
 	async folderExists(folderName: string): Promise<boolean> {

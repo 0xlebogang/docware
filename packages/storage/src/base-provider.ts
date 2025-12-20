@@ -18,7 +18,7 @@ export abstract class BaseStorageProvider {
 	 * Creates a folder in the storage provider.
 	 * @param folderName - The name of the folder to be created
 	 */
-	abstract createFolder(folderName: string): Promise<void>;
+	abstract createFolder(folderName: string): Promise<boolean>;
 
 	/**
 	 * Checks if a folder exists in the storage provider.
@@ -30,5 +30,5 @@ export abstract class BaseStorageProvider {
 	 * Deletes a folder from the storage provider.
 	 * @param folderName - The name of the folder to be deleted
 	 */
-	abstract deleteFolder(folderName: string): Promise<void>;
+	abstract deleteFolder(folderName: string): Promise<boolean>;
 }
