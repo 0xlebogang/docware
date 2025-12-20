@@ -1,0 +1,19 @@
+{
+	"name": "@repo/storage",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe"
+	},
+	"devDependencies": {
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*"
+	},
+	"dependencies": {
+		"minio": "^8.0.6"
+	}
+}

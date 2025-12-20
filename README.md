@@ -114,7 +114,7 @@ Ensure you have the following tools installed on your system:
 	 bun services:up
 	 ```
 
-	 This uses docker compose to start a PostgreSQL database.
+	 This uses docker compose to start all the external services required by docware. You can have a look at this [docker-compose.yml](./docker-compose.yml) file to exactly what services are run
 
 6. Migrate the database.
 
@@ -139,6 +139,8 @@ Ensure you have the following tools installed on your system:
 	 | App | [`http:localhost:3000`](http://localhost:3000) |
 	 | Auth App | [`http://localhost:3001`](http://localhost:3001) |
 	 | Database server | `postgres://root@localhost:5432/postgres?schema=public` |
+	 | Minio API | [`http://localhost:9000`](http://localhost:9000) |
+	 | Minio Console | [`http://localhost:9001`](http://localhost:9001) |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 

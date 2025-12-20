@@ -15,7 +15,8 @@
 		"@hono/zod-validator": "^0.7.5",
 		"@repo/auth": "workspace:*",
 		"@repo/database": "workspace:*",
-		"@repo/hono": "workspace:*"
+		"@repo/hono": "workspace:*",
+		"@repo/storage": "workspace:*"
 	},
 	"devDependencies": {
 		"@repo/biome": "workspace:*",

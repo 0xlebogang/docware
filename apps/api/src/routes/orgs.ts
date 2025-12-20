@@ -3,6 +3,7 @@ import { db } from "@repo/database";
 import { OrganizationInputSchema } from "@repo/database/validation";
 import { Hono } from "@repo/hono";
 import type { Env } from "@repo/hono/factory";
+import { storage } from "@/lib/storage-provider";
 import { OrganizationService } from "@/services/orgs.service";
 
 export type OrgEnv = Env & {
@@ -13,7 +14,7 @@ export type OrgEnv = Env & {
 
 const app = new Hono<OrgEnv>()
 	.use("*", async (c, next) => {
-		const service = new OrganizationService(db, c.var.userID || "");
+		const service = new OrganizationService(db, c.var.userID || "", storage);
 		c.set("service", service);
 		await next();
 	})
