@@ -10,6 +10,11 @@ export abstract class BaseStorageProvider {
 	}
 
 	/**
+	 * Checks the health/status of the storage provider.
+	 */
+	abstract checkHealth(): Promise<unknown>;
+
+	/**
 	 * Creates a folder in the storage provider.
 	 * @param folderName - The name of the folder to be created
 	 */

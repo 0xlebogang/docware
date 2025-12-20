@@ -9,7 +9,7 @@ export class MinioStorageProvider extends BaseStorageProvider {
 		port: string,
 		accessKey: string,
 		secretKey: string,
-		useSSL: boolean = true,
+		useSSL: boolean = false,
 		bucketName?: string,
 	) {
 		super(bucketName);
@@ -21,6 +21,10 @@ export class MinioStorageProvider extends BaseStorageProvider {
 			secretKey,
 			useSSL,
 		});
+	}
+
+	async checkHealth(): Promise<Minio.BucketItemFromList[]> {
+		return await this.client.listBuckets();
 	}
 
 	async createFolder(folderName: string): Promise<void> {
