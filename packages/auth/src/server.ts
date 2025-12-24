@@ -1,15 +1,28 @@
-import { db as client } from "@repo/database";
-import { betterAuth } from "better-auth";
+import { db as client, db } from "@repo/database";
+import { createProvider } from "@repo/storage";
+import { betterAuth, type User } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 
+const storage = createProvider(process.env.STORAGE_PROVIDER || "minio");
+
+export async function createDefaultOrg(user: User) {
+	const org = await db.organization.create({
+		data: {
+			name: `${user.name}'s Organization`,
+			ownerId: user.id,
+		},
+	});
+
+	const success = await storage.createFolder(`user-default-org-${org.id}`);
+	if (!success) {
+		throw new Error("Failed to create storage folder for default organization");
+	}
+}
+
 export const auth = betterAuth({
-	appName: "@repo/auth",
+	appName: "auth",
 	baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000",
-	trustedOrigins: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [
-		"http://localhost:3000",
-		"http://localhost:3001",
-		"http://localhost:4321",
-	],
+	trustedOrigins: process.env.CORS_ALLOWED_ORIGINS?.split(",") || [],
 	advanced: {
 		defaultCookieAttributes: {
 			httpOnly: true,
@@ -24,6 +37,13 @@ export const auth = betterAuth({
 	database: prismaAdapter(client, {
 		provider: "postgresql",
 	}),
+	databaseHooks: {
+		user: {
+			create: {
+				after: createDefaultOrg,
+			},
+		},
+	},
 	emailAndPassword: {
 		enabled: true,
 		autoSignIn: false,

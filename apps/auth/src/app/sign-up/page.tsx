@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import GoogleButton from "@repo/components/google-button";
 import { LogoIcon } from "@repo/components/logo";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
@@ -12,6 +11,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { RedirectType, redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
+import GoogleButton from "@/components/google-button";
 import { client } from "@/lib/auth-client";
 import { type SignUpInput, SignUpSchema } from "@/lib/validation/auth";
 
