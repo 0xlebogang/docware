@@ -8,3 +8,7 @@ export type User = z.infer<typeof schema.UserModelSchema>;
 // Organization Types
 export type OrganizationInput = z.infer<typeof schema.OrganizationInputSchema>;
 export type Organization = z.infer<typeof schema.OrganizationModelSchema>;
+
+// Project Types
+export type ProjectInput = z.infer<typeof schema.ProjectInputSchema>;
+export type Project = z.infer<typeof schema.ProjectModelSchema>;

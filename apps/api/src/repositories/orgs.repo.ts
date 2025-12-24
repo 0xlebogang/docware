@@ -17,6 +17,9 @@ export class OrganizationRepository extends BaseLayer {
 			where: {
 				ownerId: this.getUserID(),
 			},
+			include: {
+				projects: true,
+			},
 		});
 	}
 
@@ -26,6 +29,9 @@ export class OrganizationRepository extends BaseLayer {
 				id,
 				ownerId: this.getUserID(),
 			},
+			include: {
+				projects: true,
+			},
 		});
 	}
 
@@ -34,6 +40,9 @@ export class OrganizationRepository extends BaseLayer {
 			data: {
 				...data,
 				ownerId: this.getUserID(),
+			},
+			include: {
+				projects: true,
 			},
 		});
 	}
