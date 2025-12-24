@@ -1,5 +1,5 @@
 import * as Minio from "minio";
-import { BaseStorageProvider } from "@/base-provider";
+import { BaseStorageProvider } from "../base-provider";
 
 export class MinioStorageProvider extends BaseStorageProvider {
 	private client: Minio.Client;
