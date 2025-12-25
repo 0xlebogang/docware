@@ -1,3 +1,4 @@
+import { GCSStorageProvider } from "./providers/gcs";
 import { MinioStorageProvider } from "./providers/minio";
 
 export function createProvider(storageType: string) {
@@ -11,7 +12,16 @@ export function createProvider(storageType: string) {
 			);
 
 		case "gcs":
-			throw new Error("GCS storage provider is not implemented yet.");
+			if (process.env.NODE_ENV === "production") {
+				return new GCSStorageProvider({
+					projectId: process.env.GCS_PROJECT_ID,
+				});
+			} else {
+				return new GCSStorageProvider({
+					projectId: process.env.GCS_PROJECT_ID || "local-gcs-project",
+					apiEndpoint: process.env.GCS_API_ENDPOINT || "http://localhost:4443",
+				});
+			}
 
 		default:
 			throw new Error(`Unsupported storage type: ${storageType}`);
