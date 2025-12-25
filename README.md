@@ -130,7 +130,21 @@ Ensure you have the following tools installed on your system:
 
 	 This will use Turborepo to run all development servers. Refer to the [contributing guidline](./CONTRIBUTING.md) to read about this in detail.
 
-7. Access the applications:
+7. Create a fake GCS project if you are using the default GCS storage backend.
+
+	> You can change the value of [`STORAGE_BACKEND`](./apps/api/.env) to `"minio"`, to use the Minio storage bakend.
+	>
+	> Be warned however, this is not yet fully supported.
+
+	- Access the frontend using the URL specified in step 7, or which ever custom url you'd have set yourself:
+		![GCP Emulator UI](./assets/gcp-add-project.png)
+	- Create a new project
+		![GCP Emulator new project](./assets/gcp-new-project.png)
+	- Name the project.
+
+		> By default the `api` will expect the project to be `"local-gcs-project"` unless you set the value of the [`GCP_PROJECT_ID`](./apps/api/.env) variable to something different.
+
+8. Access the applications:
 
 	 | Name | URL |
 	 |------|-----|
@@ -141,8 +155,14 @@ Ensure you have the following tools installed on your system:
 	 | Database server | `postgres://root@localhost:5432/postgres?schema=public` |
 	 | Minio API | [`http://localhost:9000`](http://localhost:9000) |
 	 | Minio Console | [`http://localhost:9001`](http://localhost:9001) |
+	 | GCS Pub/Sub emulator | [`http://localhost:8085`] |
+	 | GCS firestore emulator | [`http://localhost:8085`] |
+	 | GCS firestore datastore emulator | [`http://localhost:8087`] & [`http://localhost:9999`] |
+	 | GCS Storage emulator | [`http://localhost:4443`] |
+	 | GCS Emulator UI | [`http://localhost:9090`](http://localhost:9090) |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
+
 
 ### Contributing
 

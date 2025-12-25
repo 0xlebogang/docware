@@ -3,7 +3,7 @@ import { createProvider } from "@repo/storage";
 import { betterAuth, type User } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 
-const storage = createProvider(process.env.STORAGE_PROVIDER || "minio");
+const storage = createProvider(process.env.STORAGE_BACKEND || "gcs");
 
 export async function createDefaultOrg(user: User) {
 	const org = await db.organization.create({
@@ -13,10 +13,17 @@ export async function createDefaultOrg(user: User) {
 		},
 	});
 
-	const success = await storage.createFolder(`user-default-org-${org.id}`);
+	const success = await storage.createBucket(`user-default-org-${org.id}`);
 	if (!success) {
-		throw new Error("Failed to create storage folder for default organization");
+		throw new Error("Failed to create storage bucket for default organization");
 	}
+
+	await db.organization.update({
+		where: { id: org.id, ownerId: user.id },
+		data: {
+			bucketId: `user-default-org-${org.id}`,
+		},
+	});
 }
 
 export const auth = betterAuth({

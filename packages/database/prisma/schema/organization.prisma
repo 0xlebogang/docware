@@ -4,6 +4,7 @@ model Organization {
   description String?
   avatar      String?
   members     String[]
+  bucketId    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   ownerId     String

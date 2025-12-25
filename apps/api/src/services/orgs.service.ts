@@ -34,12 +34,14 @@ export class OrganizationService extends OrganizationRepository {
 		try {
 			const record = await super.create(data);
 			const bucketName = `org-${record.id}`;
-			const success = await this.storage.createFolder(bucketName);
+			const success = await this.storage.createBucket(bucketName);
 
 			// Rollback the organization creation if bucket creation fails
 			if (!success) {
 				await this.delete(record.id);
 			}
+
+			await super.update(record.id, { bucketId: bucketName });
 
 			return record;
 		} catch (error) {
