@@ -1,6 +1,9 @@
 import { GCSStorageProvider } from "./providers/gcs";
 import { MinioStorageProvider } from "./providers/minio";
 
+// Re-export Google Cloud Storage types and classes
+export * from "@google-cloud/storage";
+
 export function createProvider(storageType: string) {
 	switch (storageType.toLowerCase()) {
 		case "minio":
