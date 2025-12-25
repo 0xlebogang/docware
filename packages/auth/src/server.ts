@@ -12,13 +12,18 @@ export async function createDefaultOrg(user: User) {
 			ownerId: user.id,
 		},
 	});
-	console.log("Default organization created:", org);
 
 	const success = await storage.createBucket(`user-default-org-${org.id}`);
-	console.log("Storage bucket creation status:", success);
 	if (!success) {
 		throw new Error("Failed to create storage bucket for default organization");
 	}
+
+	await db.organization.update({
+		where: { id: org.id, ownerId: user.id },
+		data: {
+			bucketId: `user-default-org-${org.id}`,
+		},
+	});
 }
 
 export const auth = betterAuth({
