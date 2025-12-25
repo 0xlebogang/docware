@@ -15,6 +15,15 @@ export type ProjectsEnv = Env & {
 
 const app = new Hono<ProjectsEnv>()
 	.use("*", async (c, next) => {
+		// Extract organization ID from headers
+		const organizationId = c.req.header(
+			process.env.ORGANIZATION_ID_HEADER || "",
+		);
+		if (!organizationId) {
+			return c.json({ error: "Organization ID header is missing." }, 400);
+		}
+		c.set("organizationId", organizationId);
+
 		const service = new ProjectService(
 			db,
 			storage,
