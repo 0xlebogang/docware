@@ -141,6 +141,11 @@ Ensure you have the following tools installed on your system:
 	 | Database server | `postgres://root@localhost:5432/postgres?schema=public` |
 	 | Minio API | [`http://localhost:9000`](http://localhost:9000) |
 	 | Minio Console | [`http://localhost:9001`](http://localhost:9001) |
+	 | GCS Pub/Sub emulator | [`http://localhost:8085`] |
+	 | GCS firestore emulator | [`http://localhost:8085`] |
+	 | GCS firestore datastore emulator | [`http://localhost:8087`] & [`http://localhost:9999`] |
+	 | GCS Storage emulator | [`http://localhost:4443`] |
+	 | GCS Emulator UI | [`http://localhost:9090`](http://localhost:9090) |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 
