@@ -8,7 +8,6 @@ export class OrganizationRepository extends BaseLayer {
 		userID: string,
 	) {
 		super(userID);
-
 		this.db = db;
 	}
 
@@ -29,9 +28,6 @@ export class OrganizationRepository extends BaseLayer {
 				id,
 				ownerId: this.getUserID(),
 			},
-			include: {
-				projects: true,
-			},
 		});
 	}
 
@@ -40,9 +36,6 @@ export class OrganizationRepository extends BaseLayer {
 			data: {
 				...data,
 				ownerId: this.getUserID(),
-			},
-			include: {
-				projects: true,
 			},
 		});
 	}
