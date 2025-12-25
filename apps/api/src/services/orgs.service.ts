@@ -62,8 +62,8 @@ export class OrganizationService extends OrganizationRepository {
 
 			return await super.delete(id);
 		} catch (error) {
-			console.error("Error deleting storage bucket for organization:", error);
-			throw new Error("Failed to delete storage bucket for organization");
+			console.error(`Error deleting organization with ID ${id}:`, error);
+			throw new Error("Failed to delete organization");
 		}
 	}
 }
