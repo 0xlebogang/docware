@@ -44,6 +44,17 @@ export class ProjectRepository extends BaseLayer {
 		});
 	}
 
+	async update(id: string, data: Partial<ProjectInput>): Promise<Project> {
+		return await this.db.project.update({
+			where: {
+				id,
+				userId: this.getUserID(),
+				organizationId: this.organizationId,
+			},
+			data,
+		});
+	}
+
 	async delete(id: string): Promise<boolean> {
 		const record = await this.getByID(id);
 		if (!record) {
