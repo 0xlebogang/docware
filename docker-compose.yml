@@ -86,7 +86,7 @@ services:
     restart: unless-stopped
 
   storage-emulator:
-    image: fsouza/fake-gcs-server:latest
+    image: docker.io/fsouza/fake-gcs-server:latest
     container_name: storage-emulator
     command: -scheme http
     restart: unless-stopped
