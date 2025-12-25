@@ -38,6 +38,21 @@ export class OrganizationRepository extends BaseLayer {
 		});
 	}
 
+	async update(
+		id: string,
+		data: Partial<OrganizationInput>,
+	): Promise<Organization> {
+		return await this.db.organization.update({
+			where: {
+				id,
+				ownerId: this.getUserID(),
+			},
+			data: {
+				...data,
+			},
+		});
+	}
+
 	async delete(id: string): Promise<boolean> {
 		const record = await this.getByID(id);
 		if (!record) {

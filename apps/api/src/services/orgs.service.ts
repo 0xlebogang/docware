@@ -41,6 +41,8 @@ export class OrganizationService extends OrganizationRepository {
 				await this.delete(record.id);
 			}
 
+			await super.update(record.id, { bucketId: bucketName });
+
 			return record;
 		} catch (error) {
 			console.error("Error creating storage bucket for organization:", error);
