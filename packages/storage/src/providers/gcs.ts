@@ -8,11 +8,9 @@ import { BaseStorageProvider } from "../base-provider";
 
 export class GCSStorageProvider extends BaseStorageProvider {
 	private client: Storage;
-	private _prefix?: string;
 
-	constructor(options: StorageOptions, prefix?: string) {
+	constructor(options: StorageOptions) {
 		super();
-		this._prefix = prefix;
 		this.client = new Storage(options);
 	}
 
@@ -29,17 +27,23 @@ export class GCSStorageProvider extends BaseStorageProvider {
 		}
 	}
 
-	async deleteBucket(_bucketName: string): Promise<boolean> {
-		throw new Error("Method not implemented.");
-	}
-
-	async bucketExists(_bucketName: string): Promise<boolean> {
-		throw new Error("Method not implemented.");
-	}
-
-	async createFolder(folderName: string): Promise<boolean> {
+	async deleteBucket(bucketName: string): Promise<boolean> {
 		try {
-			await this.client.createBucket(folderName);
+			await this.client.bucket(bucketName).delete();
+			return true;
+		} catch (error) {
+			console.error("Error deleting bucket:", error);
+			return false;
+		}
+	}
+
+	async bucketExists(bucketName: string): Promise<boolean> {
+		return (await this.client.bucket(bucketName).exists())[0];
+	}
+
+	async createFolder(bucketName: string, folderName: string): Promise<boolean> {
+		try {
+			await this.client.bucket(bucketName).file(`${folderName}/`).save("");
 			return true;
 		} catch (error) {
 			console.error("Error creating folder:", error);
@@ -47,9 +51,9 @@ export class GCSStorageProvider extends BaseStorageProvider {
 		}
 	}
 
-	async deleteFolder(folderName: string): Promise<boolean> {
+	async deleteFolder(bucketName: string, folderName: string): Promise<boolean> {
 		try {
-			await this.client.bucket(folderName).delete();
+			await this.client.bucket(bucketName).file(`${folderName}/`).delete();
 			return true;
 		} catch (error) {
 			console.error("Error deleting folder:", error);
@@ -57,7 +61,9 @@ export class GCSStorageProvider extends BaseStorageProvider {
 		}
 	}
 
-	async folderExists(folderName: string): Promise<boolean> {
-		return (await this.client.bucket(folderName).exists())[0];
+	async folderExists(bucketName: string, folderName: string): Promise<boolean> {
+		return (
+			await this.client.bucket(bucketName).file(`${folderName}/`).exists()
+		)[0];
 	}
 }

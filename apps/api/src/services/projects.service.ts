@@ -4,6 +4,8 @@ import type { storage as StorageProvider } from "@/lib/storage-provider";
 import { ProjectRepository } from "../repositories/projects.repo";
 
 export class ProjectService extends ProjectRepository {
+	private bucketName: string;
+
 	constructor(
 		protected readonly db: typeof dbClient,
 		private readonly storage: typeof StorageProvider,
@@ -11,6 +13,7 @@ export class ProjectService extends ProjectRepository {
 		organizationId: string,
 	) {
 		super(db, userID, organizationId);
+		this.bucketName = `org-${organizationId}`;
 	}
 
 	async getAll(): Promise<Project[]> {
@@ -35,12 +38,17 @@ export class ProjectService extends ProjectRepository {
 		try {
 			const record = await super.create(data);
 			const folderName = `project-${record.id}`;
-			const success = await this.storage.createFolder(folderName);
+			const success = await this.storage.createFolder(
+				this.bucketName,
+				folderName,
+			);
 
 			// Rollback the project creation if folder creation fails
 			if (!success) {
 				await this.delete(record.id);
 			}
+
+			await super.update(record.id, { folderPath: folderName });
 
 			return record;
 		} catch (error) {
@@ -52,7 +60,10 @@ export class ProjectService extends ProjectRepository {
 	async delete(id: string): Promise<boolean> {
 		try {
 			const folderName = `project-${id}`;
-			const success = await this.storage.deleteFolder(folderName);
+			const success = await this.storage.deleteFolder(
+				this.bucketName,
+				folderName,
+			);
 
 			// Throw an error if folder deletion fails
 			if (!success) {
