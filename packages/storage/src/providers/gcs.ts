@@ -43,7 +43,7 @@ export class GCSStorageProvider extends BaseStorageProvider {
 
 	async createFolder(bucketName: string, folderName: string): Promise<boolean> {
 		try {
-			await this.client.bucket(bucketName).file(`${folderName}/`).save("");
+			await this.client.bucket(bucketName).file(`${folderName}/.keep`).save("");
 			return true;
 		} catch (error) {
 			console.error("Error creating folder:", error);
