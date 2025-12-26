@@ -107,7 +107,7 @@ export function NavProjects() {
 						</DropdownMenu>
 					</SidebarMenuItem>
 				))}
-				{projects.length > 1 && (
+				{projects.length > 0 && (
 					<SidebarMenuItem>
 						<SidebarMenuButton>
 							<MoreHorizontal className="h-5" />

@@ -10,6 +10,7 @@ export type ProjectsState = {
 	projects: Project[];
 	isLoading: boolean;
 	getProjects: (organizationId: string) => Promise<void>;
+	addProject: (project: Project) => void;
 };
 
 export const useProjectStore = create<ProjectsState>((set) => ({
@@ -43,4 +44,9 @@ export const useProjectStore = create<ProjectsState>((set) => ({
 			set({ isLoading: false });
 		}
 	},
+
+	addProject: (project: Project) =>
+		set((state) => ({
+			projects: [...state.projects, project],
+		})),
 }));
