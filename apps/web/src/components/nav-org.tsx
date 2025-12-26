@@ -38,15 +38,13 @@ export function NavOrg() {
 		setActiveOrganization,
 	} = useOrganizationStore();
 
-	const { projects, getProjects } = useProjectStore();
+	const projectCount = useProjectStore((state) => state.projects.length);
 
 	React.useEffect(() => {
 		fetchAndInitializeOrganizations().catch((_) =>
 			toast.error("Error fetching organizations"),
 		);
-
-		if (activeOrganization?.id) getProjects(activeOrganization.id);
-	}, [fetchAndInitializeOrganizations, getProjects, activeOrganization?.id]);
+	}, [fetchAndInitializeOrganizations]);
 
 	const orgs = organizations.filter((org) => org.id !== activeOrganization?.id);
 
@@ -92,7 +90,7 @@ export function NavOrg() {
 								<Folder className="h-5" />
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate text-muted-foreground text-xs">
-										{projects.length} Projects
+										{projectCount} Projects
 									</span>
 								</div>
 							</div>
