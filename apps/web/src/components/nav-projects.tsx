@@ -47,8 +47,10 @@ export function NavProjects() {
 	);
 
 	React.useEffect(() => {
-		getProjects(activeOrganization?.id || "");
-	}, [getProjects, activeOrganization?.id]);
+		if (activeOrganization) {
+			getProjects(activeOrganization.id);
+		}
+	}, [getProjects, activeOrganization]);
 
 	return (
 		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -105,7 +107,7 @@ export function NavProjects() {
 						</DropdownMenu>
 					</SidebarMenuItem>
 				))}
-				{projects.length > 4 && (
+				{projects.length > 1 && (
 					<SidebarMenuItem>
 						<SidebarMenuButton>
 							<MoreHorizontal className="h-5" />

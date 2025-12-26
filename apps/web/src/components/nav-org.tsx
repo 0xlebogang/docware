@@ -44,7 +44,8 @@ export function NavOrg() {
 		fetchAndInitializeOrganizations().catch((_) =>
 			toast.error("Error fetching organizations"),
 		);
-		getProjects(activeOrganization?.id || "");
+
+		if (activeOrganization?.id) getProjects(activeOrganization.id);
 	}, [fetchAndInitializeOrganizations, getProjects, activeOrganization?.id]);
 
 	const orgs = organizations.filter((org) => org.id !== activeOrganization?.id);

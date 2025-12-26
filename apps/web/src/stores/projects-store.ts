@@ -3,6 +3,9 @@ import { toast } from "@repo/ui/components/sonner";
 import { create } from "zustand";
 import { api } from "@/lib/api-client";
 
+const organizationIdHeader =
+	process.env.ORGANIZATION_ID_HEADER || "X-Organization-ID";
+
 export type ProjectsState = {
 	projects: Project[];
 	isLoading: boolean;
@@ -21,7 +24,7 @@ export const useProjectStore = create<ProjectsState>((set) => ({
 				{},
 				{
 					headers: {
-						"X-Organization-ID": organizationId,
+						[organizationIdHeader]: organizationId,
 					},
 				},
 			);
