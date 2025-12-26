@@ -26,6 +26,7 @@ import { ChevronsUpDown, Folder, PlusCircle, Users } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { useOrganizationStore } from "@/stores/organizations-store";
+import { useProjectStore } from "@/stores/projects-store";
 
 export function NavOrg() {
 	const { isMobile } = useSidebar();
@@ -37,11 +38,14 @@ export function NavOrg() {
 		setActiveOrganization,
 	} = useOrganizationStore();
 
+	const { projects, getProjects } = useProjectStore();
+
 	React.useEffect(() => {
 		fetchAndInitializeOrganizations().catch((_) =>
 			toast.error("Error fetching organizations"),
 		);
-	}, [fetchAndInitializeOrganizations]);
+		getProjects(activeOrganization?.id || "");
+	}, [fetchAndInitializeOrganizations, getProjects, activeOrganization?.id]);
 
 	const orgs = organizations.filter((org) => org.id !== activeOrganization?.id);
 
@@ -87,7 +91,7 @@ export function NavOrg() {
 								<Folder className="h-5" />
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate text-muted-foreground text-xs">
-										{activeOrganization?.members.length} Projects
+										{projects.length} Projects
 									</span>
 								</div>
 							</div>
