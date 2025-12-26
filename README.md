@@ -119,7 +119,7 @@ Ensure you have the following tools installed on your system:
 6. Migrate the database.
 
 	 ```bash
-	 turbo db:push
+	 bun turbo db:push
 	 ```
 
 5. Start the development server:
@@ -137,12 +137,16 @@ Ensure you have the following tools installed on your system:
 	> Be warned however, this is not yet fully supported.
 
 	- Access the frontend using the URL specified in step 7, or which ever custom url you'd have set yourself:
-		![GCP Emulator UI](./assets/gcp-add-project.png)
-	- Create a new project
-		![GCP Emulator new project](./assets/gcp-new-project.png)
-	- Name the project.
 
-		> By default the `api` will expect the project to be `"local-gcs-project"` unless you set the value of the [`GCP_PROJECT_ID`](./apps/api/.env) variable to something different.
+		![GCP Emulator UI](./assets/gcp-add-project.png)
+
+	- Create a new project
+
+		![GCP Emulator new project](./assets/gcp-new-project.png)
+
+	- Name the project accordingly.
+
+		> By default the `api` expects a project called `"local-gcs-project"`. You can modify which project to work with by setting the [`GCP_PROJECT_ID`](./apps/api/.env) variable to something different.
 
 8. Access the applications:
 
@@ -156,10 +160,11 @@ Ensure you have the following tools installed on your system:
 	 | Minio API | [`http://localhost:9000`](http://localhost:9000) |
 	 | Minio Console | [`http://localhost:9001`](http://localhost:9001) |
 	 | GCS Pub/Sub emulator | [`http://localhost:8085`] |
-	 | GCS firestore emulator | [`http://localhost:8085`] |
+	 | GCS firestore emulator | [`http://localhost:8086`] |
 	 | GCS firestore datastore emulator | [`http://localhost:8087`] & [`http://localhost:9999`] |
 	 | GCS Storage emulator | [`http://localhost:4443`] |
 	 | GCS Emulator UI | [`http://localhost:9090`](http://localhost:9090) |
+	 | Google ADK Web | [`http://localhost:8000`](http://localhost:8000) |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 

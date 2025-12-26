@@ -1,0 +1,13 @@
+{
+	"extends": "@repo/tsconfig/base",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"verbatimModuleSyntax": false
+	},
+	"include": [
+		"./**/*",
+		"../../packages/storage/src/**/*",
+		"../../packages/database/src/**/*"
+	],
+	"exclude": ["node_modules", "dist"]
+}
