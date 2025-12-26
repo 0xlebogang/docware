@@ -1,0 +1,22 @@
+{
+	"name": "@repo/root-agent",
+	"version": "0.0.0",
+	"private": true,
+	"main": "agent.ts",
+	"scripts": {
+		"dev": "adk web",
+		"build": "bun build --outdir dist --target node .",
+		"lint": "biome check",
+		"lint:fix": "biome check --fix --unsafe"
+	},
+	"dependencies": {
+		"@google/adk": "^0.2.1",
+		"@repo/database": "workspace:*",
+		"@repo/storage": "workspace:*"
+	},
+	"devDependencies": {
+		"@google/adk-devtools": "^0.2.1",
+		"@repo/biome": "workspace:*",
+		"@repo/tsconfig": "workspace:*"
+	}
+}

@@ -5,6 +5,7 @@
 		"node": ">=20.9"
 	},
 	"workspaces": [
+		"agents/*",
 		"apps/*",
 		"packages/*",
 		"tools/*"
