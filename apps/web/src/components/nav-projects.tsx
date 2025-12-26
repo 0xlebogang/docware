@@ -109,9 +109,11 @@ export function NavProjects() {
 				))}
 				{projects.length > 0 && (
 					<SidebarMenuItem>
-						<SidebarMenuButton>
-							<MoreHorizontal className="h-5" />
-							<span>More</span>
+						<SidebarMenuButton asChild>
+							<Link href="/projects">
+								<MoreHorizontal className="h-5" />
+								<span>More</span>
+							</Link>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				)}

@@ -69,7 +69,7 @@ export default function NewProject() {
 			return;
 		}
 
-		redirect("/", RedirectType.push);
+		redirect("/projects", RedirectType.push);
 	}
 
 	return (
