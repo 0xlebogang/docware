@@ -22,44 +22,59 @@ import {
 	useSidebar,
 } from "@repo/ui/components/sidebar";
 import { Folder, MoreHorizontal, Trash2 } from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
+import { useOrganizationStore } from "@/stores/organizations-store";
+import { useProjectStore } from "@/stores/projects-store";
 
 export interface Project {
+	id: string;
 	name: string;
-	url: string;
-	avatar: string;
+	description: string | null;
+	siteUrl: string | null;
+	folderPath: string | null;
+	createdAt: Date;
+	updatedAt: Date;
+	organizationId: string;
+	userId: string | null;
 }
-
-const projects: Project[] = [
-	{
-		name: "Design Engineering",
-		url: "#",
-		avatar: "avatars/project-1.jpg",
-	},
-	{
-		name: "Sales & Marketing",
-		url: "#",
-		avatar: "avatars/project-2.jpg",
-	},
-	{
-		name: "Travel",
-		url: "#",
-		avatar: "avatars/project-3.jpg",
-	},
-];
 
 export function NavProjects() {
 	const { isMobile } = useSidebar();
+	const { projects, getProjects } = useProjectStore();
+	const activeOrganization = useOrganizationStore(
+		(state) => state.activeOrganization,
+	);
+
+	React.useEffect(() => {
+		getProjects(activeOrganization?.id || "");
+	}, [getProjects, activeOrganization?.id]);
 
 	return (
 		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
 			<SidebarGroupLabel>Projects</SidebarGroupLabel>
 			<SidebarMenu>
-				{projects.slice(0, 4).map((item) => (
-					<SidebarMenuItem key={item.name}>
+				{projects.length === 0 && (
+					<SidebarMenuItem>
 						<SidebarMenuButton asChild>
-							<a href={item.url}>
+							<Link
+								href="/projects/new"
+								className="text-muted-foreground text-xs"
+							>
+								+ Create your first project
+							</Link>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				)}
+				{projects.slice(0, 4).map((item) => (
+					<SidebarMenuItem key={item.id}>
+						<SidebarMenuButton asChild>
+							<a href={item.siteUrl ?? "#"}>
 								<Avatar className="h-6 w-6 rounded-lg">
-									<AvatarImage src={item.avatar} alt={item.name} />
+									<AvatarImage
+										src={item.folderPath ?? undefined}
+										alt={item.name}
+									/>
 									<AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
 								</Avatar>
 								<span>{item.name}</span>
