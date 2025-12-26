@@ -53,7 +53,7 @@ export class OrganizationService extends OrganizationRepository {
 	async delete(id: string): Promise<boolean> {
 		try {
 			const bucketName = `org-${id}`;
-			const success = await this.storage.deleteFolder(bucketName);
+			const success = await this.storage.deleteBucket(bucketName);
 
 			// Throw an error if bucket deletion fails
 			if (!success) {
@@ -62,8 +62,8 @@ export class OrganizationService extends OrganizationRepository {
 
 			return await super.delete(id);
 		} catch (error) {
-			console.error("Error deleting storage bucket for organization:", error);
-			throw new Error("Failed to delete storage bucket for organization");
+			console.error(`Error deleting organization with ID ${id}:`, error);
+			throw new Error("Failed to delete organization");
 		}
 	}
 }

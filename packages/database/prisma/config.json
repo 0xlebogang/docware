@@ -1,24 +1,29 @@
 {
 	"$schema": "../node_modules/prisma-zod-generator/lib/config/schema.json",
 	"output": "../src/generated/zod",
+	"globalExclusions": {
+		"input": [
+			"id",
+			"owner",
+			"ownerId",
+			"members",
+			"projects",
+			"userId",
+			"user",
+			"organization",
+			"organizationId",
+			"createdAt",
+			"updatedAt"
+		],
+		"pure": ["owner", "projects", "user", "organization"],
+		"result": ["owner", "projects", "user", "organization"]
+	},
 	"variants": {
 		"input": {
-			"strictMode": true,
-			"excludeFields": [
-				"id",
-				"owner",
-				"ownerId",
-				"members",
-				"createdAt",
-				"updatedAt"
-			]
+			"strictMode": true
 		},
-		"pure": {
-			"excludeFields": ["owner"]
-		},
-		"result": {
-			"excludeFields": ["owner"]
-		}
+		"pure": {},
+		"result": {}
 	},
 	"naming": {
 		"pureModel": {

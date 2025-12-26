@@ -6,6 +6,7 @@
 			"outputs": ["src/generated/**"]
 		},
 		"db:push": {
+			"cache": false,
 			"dependsOn": ["db:generate"]
 		},
 		"db:makemigrations": {

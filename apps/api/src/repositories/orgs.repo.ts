@@ -8,7 +8,6 @@ export class OrganizationRepository extends BaseLayer {
 		userID: string,
 	) {
 		super(userID);
-
 		this.db = db;
 	}
 
@@ -16,6 +15,9 @@ export class OrganizationRepository extends BaseLayer {
 		return await this.db.organization.findMany({
 			where: {
 				ownerId: this.getUserID(),
+			},
+			include: {
+				projects: true,
 			},
 		});
 	}

@@ -22,28 +22,61 @@ import {
 	useSidebar,
 } from "@repo/ui/components/sidebar";
 import { Folder, MoreHorizontal, Trash2 } from "lucide-react";
+import Link from "next/link";
+import * as React from "react";
+import { useOrganizationStore } from "@/stores/organizations-store";
+import { useProjectStore } from "@/stores/projects-store";
 
-export function NavProjects({
-	projects,
-}: {
-	projects: {
-		name: string;
-		url: string;
-		avatar: string;
-	}[];
-}) {
+export interface Project {
+	id: string;
+	name: string;
+	description: string | null;
+	siteUrl: string | null;
+	folderPath: string | null;
+	createdAt: Date;
+	updatedAt: Date;
+	organizationId: string;
+	userId: string | null;
+}
+
+export function NavProjects() {
 	const { isMobile } = useSidebar();
+	const { projects, getProjects } = useProjectStore();
+	const activeOrganization = useOrganizationStore(
+		(state) => state.activeOrganization,
+	);
+
+	React.useEffect(() => {
+		if (activeOrganization) {
+			getProjects(activeOrganization.id);
+		}
+	}, [getProjects, activeOrganization]);
 
 	return (
 		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
 			<SidebarGroupLabel>Projects</SidebarGroupLabel>
 			<SidebarMenu>
-				{projects.map((item) => (
-					<SidebarMenuItem key={item.name}>
+				{projects.length === 0 && (
+					<SidebarMenuItem>
 						<SidebarMenuButton asChild>
-							<a href={item.url}>
+							<Link
+								href="/projects/new"
+								className="text-muted-foreground text-xs"
+							>
+								+ Create your first project
+							</Link>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				)}
+				{projects.slice(0, 4).map((item) => (
+					<SidebarMenuItem key={item.id}>
+						<SidebarMenuButton asChild>
+							<a href={item.siteUrl ?? "#"}>
 								<Avatar className="h-6 w-6 rounded-lg">
-									<AvatarImage src={item.avatar} alt={item.name} />
+									<AvatarImage
+										src={item.folderPath ?? undefined}
+										alt={item.name}
+									/>
 									<AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
 								</Avatar>
 								<span>{item.name}</span>
@@ -74,12 +107,16 @@ export function NavProjects({
 						</DropdownMenu>
 					</SidebarMenuItem>
 				))}
-				<SidebarMenuItem>
-					<SidebarMenuButton>
-						<MoreHorizontal />
-						<span>More</span>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
+				{projects.length > 0 && (
+					<SidebarMenuItem>
+						<SidebarMenuButton asChild>
+							<Link href="/projects">
+								<MoreHorizontal className="h-5" />
+								<span>More</span>
+							</Link>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				)}
 			</SidebarMenu>
 		</SidebarGroup>
 	);

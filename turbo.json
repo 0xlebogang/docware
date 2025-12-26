@@ -17,7 +17,6 @@
 		"//#lint:fixall": {},
 		"typecheck": {},
 		"dev": {
-			"dependsOn": ["//#services:up"],
 			"cache": false,
 			"persistent": true
 		},

@@ -26,6 +26,7 @@ import { ChevronsUpDown, Folder, PlusCircle, Users } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { useOrganizationStore } from "@/stores/organizations-store";
+import { useProjectStore } from "@/stores/projects-store";
 
 export function NavOrg() {
 	const { isMobile } = useSidebar();
@@ -36,6 +37,8 @@ export function NavOrg() {
 		fetchAndInitializeOrganizations,
 		setActiveOrganization,
 	} = useOrganizationStore();
+
+	const projectCount = useProjectStore((state) => state.projects.length);
 
 	React.useEffect(() => {
 		fetchAndInitializeOrganizations().catch((_) =>
@@ -87,7 +90,7 @@ export function NavOrg() {
 								<Folder className="h-5" />
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate text-muted-foreground text-xs">
-										{activeOrganization?.members.length} Projects
+										{projectCount} Projects
 									</span>
 								</div>
 							</div>

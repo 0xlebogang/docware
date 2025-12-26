@@ -13,7 +13,7 @@ export async function createDefaultOrg(user: User) {
 		},
 	});
 
-	const success = await storage.createBucket(`user-default-org-${org.id}`);
+	const success = await storage.createBucket(`org-${org.id}`);
 	if (!success) {
 		throw new Error("Failed to create storage bucket for default organization");
 	}

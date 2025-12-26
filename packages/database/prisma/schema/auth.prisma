@@ -9,6 +9,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   organizations Organization[]
+  projects      Project[]
 
   @@unique([email])
   @@map("user")
