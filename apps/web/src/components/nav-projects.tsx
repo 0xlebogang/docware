@@ -23,22 +23,38 @@ import {
 } from "@repo/ui/components/sidebar";
 import { Folder, MoreHorizontal, Trash2 } from "lucide-react";
 
-export function NavProjects({
-	projects,
-}: {
-	projects: {
-		name: string;
-		url: string;
-		avatar: string;
-	}[];
-}) {
+export interface Project {
+	name: string;
+	url: string;
+	avatar: string;
+}
+
+const projects: Project[] = [
+	{
+		name: "Design Engineering",
+		url: "#",
+		avatar: "avatars/project-1.jpg",
+	},
+	{
+		name: "Sales & Marketing",
+		url: "#",
+		avatar: "avatars/project-2.jpg",
+	},
+	{
+		name: "Travel",
+		url: "#",
+		avatar: "avatars/project-3.jpg",
+	},
+];
+
+export function NavProjects() {
 	const { isMobile } = useSidebar();
 
 	return (
 		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
 			<SidebarGroupLabel>Projects</SidebarGroupLabel>
 			<SidebarMenu>
-				{projects.map((item) => (
+				{projects.slice(0, 4).map((item) => (
 					<SidebarMenuItem key={item.name}>
 						<SidebarMenuButton asChild>
 							<a href={item.url}>
@@ -74,12 +90,14 @@ export function NavProjects({
 						</DropdownMenu>
 					</SidebarMenuItem>
 				))}
-				<SidebarMenuItem>
-					<SidebarMenuButton>
-						<MoreHorizontal />
-						<span>More</span>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
+				{projects.length > 4 && (
+					<SidebarMenuItem>
+						<SidebarMenuButton>
+							<MoreHorizontal className="h-5" />
+							<span>More</span>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+				)}
 			</SidebarMenu>
 		</SidebarGroup>
 	);

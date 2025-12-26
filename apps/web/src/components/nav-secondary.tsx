@@ -5,19 +5,37 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@repo/ui/components/sidebar";
-import type { LucideIcon } from "lucide-react";
+import { BookOpen, LifeBuoy, type LucideIcon, Send } from "lucide-react";
 import type * as React from "react";
 
+export interface Items {
+	title: string;
+	url: string;
+	icon: LucideIcon;
+}
+[];
+
+const items: Items[] = [
+	{
+		title: "Documentation",
+		url: "#",
+		icon: BookOpen,
+	},
+	{
+		title: "Support",
+		url: "#",
+		icon: LifeBuoy,
+	},
+	{
+		title: "Feedback",
+		url: "#",
+		icon: Send,
+	},
+];
+
 export function NavSecondary({
-	items,
 	...props
-}: {
-	items: {
-		title: string;
-		url: string;
-		icon: LucideIcon;
-	}[];
-} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+}: React.ComponentProps<typeof SidebarGroup>) {
 	return (
 		<SidebarGroup {...props}>
 			<SidebarGroupContent>
