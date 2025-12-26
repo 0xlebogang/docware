@@ -53,7 +53,7 @@ export class OrganizationService extends OrganizationRepository {
 	async delete(id: string): Promise<boolean> {
 		try {
 			const bucketName = `org-${id}`;
-			const success = await this.storage.deleteFolder(bucketName);
+			const success = await this.storage.deleteBucket(bucketName);
 
 			// Throw an error if bucket deletion fails
 			if (!success) {
