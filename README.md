@@ -164,7 +164,7 @@ Ensure you have the following tools installed on your system:
 	 | GCS firestore datastore emulator | [`http://localhost:8087`] & [`http://localhost:9999`] |
 	 | GCS Storage emulator | [`http://localhost:4443`] |
 	 | GCS Emulator UI | [`http://localhost:9090`](http://localhost:9090) |
-	 | Google ADK Web | [`http://localhost:8000`](http://localhost:8000) |
+	 | Google ADK Web | [`http://localhost:8080`](http://localhost:8080) |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 

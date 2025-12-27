@@ -1,0 +1,10 @@
+{
+	"name": "agents",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "go run . web api webui",
+		"build": "go build -o bin/agent ./",
+		"lint": "golangci-lint run ./..."
+	}
+}
