@@ -62,6 +62,7 @@ Ensure you have the following tools installed on your system:
 - [Turborepo](https://turborepo.com/docs) (v2.6+)
 - [Go](https://go.dev/doc/install) (v1.24.4+)
 - [Golangci-lint](https://golangci-lint.run/docs/welcome/install/local/) (latest stable version)
+- [Air](https://github.com/air-verse/air) (latest stable version)
 - [Docker & Docker Compose](https://docs.docker.com/get-docker/) (latest stable versions)
 
 ### Running the project
