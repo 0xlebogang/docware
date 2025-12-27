@@ -29,8 +29,8 @@ func main() {
 	rootAgent, err := llmagent.New(llmagent.Config{
 		Name:        "root_agent",
 		Model:       model,
-		Description: "The main agent entrypoint that orchestrates all the logic behind how all downstream agents should handle their tasks",
-		Instruction: "You are a helpful assistant. That helps users with their requests by delegating tasks to specialized agents as needed. Answer the user's questions to your best ability and if you are unsure of the answer, take advantage of the google search tool you have access to.",
+		Description: rootAgentDescription,
+		Instruction: rootAgentInstruction,
 		Tools: []tool.Tool{
 			geminitool.GoogleSearch{},
 		},
