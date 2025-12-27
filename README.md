@@ -62,6 +62,7 @@ Ensure you have the following tools installed on your system:
 - [Turborepo](https://turborepo.com/docs) (v2.6+)
 - [Go](https://go.dev/doc/install) (v1.24.4+)
 - [Golangci-lint](https://golangci-lint.run/docs/welcome/install/local/) (latest stable version)
+- [Air](https://github.com/air-verse/air) (latest stable version)
 - [Docker & Docker Compose](https://docs.docker.com/get-docker/) (latest stable versions)
 
 ### Running the project
@@ -164,7 +165,7 @@ Ensure you have the following tools installed on your system:
 	 | GCS firestore datastore emulator | [`http://localhost:8087`] & [`http://localhost:9999`] |
 	 | GCS Storage emulator | [`http://localhost:4443`] |
 	 | GCS Emulator UI | [`http://localhost:9090`](http://localhost:9090) |
-	 | Google ADK Web | [`http://localhost:8000`](http://localhost:8000) |
+	 | Google ADK Web | [`http://localhost:8080`](http://localhost:8080) |
 
 	 > Should the case be that you needed to modify any port numbers, then you'll use those values to access the application.
 
